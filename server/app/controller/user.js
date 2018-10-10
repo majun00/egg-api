@@ -93,6 +93,24 @@ class UserController extends Controller {
         }
     }
 
+    // GET /admin/singout
+    async singout() {
+        const ctx = this.ctx
+        try {
+            delete ctx.session.admin_id;
+            ctx.body = {
+                status: 1,
+                success: '退出成功'
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                message: '退出失败'
+            }
+
+        }
+    }
+
 }
 
 module.exports = UserController

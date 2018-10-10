@@ -1,5 +1,4 @@
-// import { baseUrl } from './env'
-let baseUrl = 'api'
+import { baseUrl } from './env'
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
     type = type.toUpperCase();
