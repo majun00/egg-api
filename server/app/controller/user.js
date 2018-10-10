@@ -29,7 +29,7 @@ class UserController extends Controller {
             if (pwd !== user.password) {
                 ctx.status = 401
                 return ctx.body = {
-                    error: 'invalid password'
+                    error: '密码错误'
                 }
             }
         }
