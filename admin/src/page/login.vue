@@ -57,7 +57,7 @@ export default {
 
     mounted() {
         this.showLogin = true
-        if (this.adminInfo.id) {
+        if (!this.adminInfo.id) {
             this.getAdminData()
         }
     },
@@ -71,7 +71,7 @@ export default {
             if (newValue.id) {
                 this.$message({
                     type: 'success',
-                    message: 'has login'
+                    message: '已登录'
                 })
                 this.$router.push('manage')
             }
@@ -88,7 +88,7 @@ export default {
                     if (res.status == 1) {
                         this.$message({
                             type: 'success',
-                            message: 'login success'
+                            message: '登录成功'
                         })
                         this.$router.push('manage')
                     } else {

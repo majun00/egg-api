@@ -26,7 +26,7 @@ const actions = {
                 throw new Error(res)
             }
         } catch (err) {
-            console.log('please login')
+            console.log('请先登录')
         }
     }
 }

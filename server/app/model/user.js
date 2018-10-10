@@ -1,8 +1,6 @@
 module.exports = app => {
     const mongoose = app.mongoose
-    const Schema = mongoose.Schema
-
-    const userSchema = new Schema({
+    const userSchema = new mongoose.Schema({
         username: { // 用户名
             type: String,
             required: true
@@ -10,7 +8,8 @@ module.exports = app => {
         password: { // 密码
             type: String,
             required: true
-        }
+        },
+        id: Number,
     })
 
     return mongoose.model('User', userSchema)
