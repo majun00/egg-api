@@ -10,7 +10,7 @@ export const login = data => fetch('/admin/login', data, 'POST');
  * 退出
  */
 
-export const signout = () => fetch('/admin/singout');
+export const signout = () => fetch('/admin/signout');
 
 /**
  * 获取用户信息
@@ -122,31 +122,31 @@ export const foodCategory = (latitude, longitude) => fetch('/shopping/v2/restaur
  * 获取餐馆列表
  */
 
-export const getResturants = data => fetch('/shopping/restaurants', data);
+export const getRestaurants = data => fetch('/shopping/restaurants', data);
 
 /**
  * 获取餐馆详细信息
  */
 
-export const getResturantDetail = restaurant_id => fetch('/shopping/restaurant/' + restaurant_id);
+export const getRestaurantDetail = restaurant_id => fetch('/shopping/restaurant/' + restaurant_id);
 
 /**
  * 获取餐馆数量
  */
 
-export const getResturantsCount = () => fetch('/shopping/restaurants/count');
+export const getRestaurantsCount = () => fetch('/shopping/restaurants/count');
 
 /**
  * 更新餐馆信息
  */
 
-export const updateResturant = data => fetch('/shopping/updateshop', data, 'POST');
+export const updateRestaurant = data => fetch('/shopping/updateshop', data, 'POST');
 
 /**
  * 删除餐馆
  */
 
-export const deleteResturant = restaurant_id => fetch('/shopping/restaurant/' + restaurant_id, {}, 'DELETE');
+export const deleteRestaurant = restaurant_id => fetch('/shopping/restaurant/' + restaurant_id, {}, 'DELETE');
 
 /**
  * 获取食品列表

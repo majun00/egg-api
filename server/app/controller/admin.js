@@ -1,13 +1,15 @@
 const Controller = require('egg').Controller
 const md5 = require('blueimp-md5')
+const dtime=require('moment')
 // const jwt = require('jwt-simple')
 // const moment = require('moment')
 
-class UserController extends Controller {
+class AdminController extends Controller {
     // POST /admin/login
     async login() {
         const ctx = this.ctx
-        const { username, password } = ctx.request.body
+        const { username, password, status=1} = ctx.request.body
+        let message = '注册成功'
 
         // 数据校验
         ctx.validate({
@@ -18,22 +20,33 @@ class UserController extends Controller {
         // 把密码处理成 md5 加密
         let pwd = md5(md5(password))
 
-        let user = await ctx.model.User.findOne({
+        let user = await ctx.model.Admin.findOne({
             username
         })
 
         if (!user) {
+            const admin_id = await ctx.helper.getId('admin_id')
+            const adminTip = status == 1 ? '管理员' : ' 超级管理员'
+            const newAdmin = {
+                id: admin_id,
+                create_time: dtime().format('YYYY-MM-DD HH:mm'),
+                // city: cityInfo.city,
+                city: '武汉',
+                admin: adminTip,
+                status,
+            }
             ctx.request.body.password = pwd
-            user = await ctx.model.User.create(ctx.request.body)
-            user.id = await ctx.helper.getId('admin_id')
-            await user.save()
+            Object.assign(newAdmin, ctx.request.body)
+            user = await ctx.model.Admin.create(newAdmin)
         } else {
-            if (pwd !== user.password) {
+            if (pwd.toString() !== user.password.toString()) {
                 ctx.status = 401
                 return ctx.body = {
                     status: 0,
                     error: '账号或密码错误'
                 }
+            } else {
+                message = '登录成功'
             }
         }
 
@@ -58,15 +71,16 @@ class UserController extends Controller {
             status: 1,
             // token,
             // expires,
-            data: user
+            data: user,
+            message,
         }
     }
 
     // GET /admin/info
-    async info() {
+    async getAdminInfo() {
         const ctx = this.ctx
         const admin_id = ctx.session.admin_id;
-        if (!admin_id) {
+        if (!admin_id || !Number(admin_id)) {
             ctx.body = {
                 status: 0,
                 message: '获取管理员信息失败'
@@ -74,7 +88,7 @@ class UserController extends Controller {
             return
         }
         try {
-            const info = await ctx.model.User.findOne({
+            const info = await ctx.model.Admin.findOne({
                 id: admin_id
             }, '-_id -__v -password')
             if (!info) {
@@ -93,8 +107,8 @@ class UserController extends Controller {
         }
     }
 
-    // GET /admin/singout
-    async singout() {
+    // GET /admin/signout
+    async signout() {
         const ctx = this.ctx
         try {
             delete ctx.session.admin_id;
@@ -111,6 +125,42 @@ class UserController extends Controller {
         }
     }
 
+    // GET /admin/all
+    async getAllAdmin() {
+        const ctx = this.ctx
+        const { limit = 20, offset = 0 } = ctx.request.body
+        try {
+            const allAdmin = await ctx.model.Admin.find({}, '-_id -password').sort({ id: -1 }).skip(Number(offset)).limit(Number(limit))
+            ctx.body = {
+                status: 1,
+                data: allAdmin
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                message: '获取管理列表失败'
+            }
+        }
+    }
+
+    // GET /admin/count
+    async getAdminCount() {
+        const ctx = this.ctx
+        try {
+            const count = await ctx.model.Admin.count()
+            ctx.body = {
+                status: 1,
+                count,
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                message: '获取管理员数量失败'
+            }
+        }
+    }
+
+
 }
 
-module.exports = UserController
+module.exports = AdminController

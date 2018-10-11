@@ -9,7 +9,7 @@
             <img src="//elm.cangdu.org/img/default.jpg" class="avator">
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="home">首页</el-dropdown-item>
-                <el-dropdown-item command="singout">退出</el-dropdown-item>
+                <el-dropdown-item command="signout">退出</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
 
@@ -47,7 +47,7 @@ export default {
                         type: 'success',
                         message: '退出成功'
                     })
-                    this.router.push('/')
+                    this.$router.push('/')
                 } else {
                     this.$message({
                         type: 'error',

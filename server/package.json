@@ -11,7 +11,8 @@
     "egg-scripts": "^2.1.0",
     "egg-validate": "^1.0.0",
     "jwt-simple": "^0.5.1",
-    "moment": "^2.20.1"
+    "moment": "^2.22.2",
+    "time-formater": "^1.0.3"
   },
   "devDependencies": {
     "autod": "^3.0.1",

@@ -97,7 +97,6 @@ export default {
                             message: res.message
                         })
                     }
-
                 } else {
                     this.$notify.error({
                         title: 'error',
