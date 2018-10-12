@@ -12,6 +12,7 @@
     "egg-validate": "^1.0.0",
     "jwt-simple": "^0.5.1",
     "moment": "^2.22.2",
+    "pinyin": "^2.8.3",
     "time-formater": "^1.0.3"
   },
   "devDependencies": {
