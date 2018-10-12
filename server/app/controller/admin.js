@@ -1,6 +1,6 @@
 const Controller = require('egg').Controller
 const md5 = require('blueimp-md5')
-const dtime=require('moment')
+const dtime = require('moment')
 // const jwt = require('jwt-simple')
 // const moment = require('moment')
 
@@ -8,7 +8,7 @@ class AdminController extends Controller {
     // POST /admin/login
     async login() {
         const ctx = this.ctx
-        const { username, password, status=1} = ctx.request.body
+        const { username, password, status = 1 } = ctx.request.body
         let message = '注册成功'
 
         // 数据校验
@@ -27,14 +27,15 @@ class AdminController extends Controller {
         if (!user) {
             const admin_id = await ctx.helper.getId('admin_id')
             const adminTip = status == 1 ? '管理员' : ' 超级管理员'
+            const cityInfo = await ctx.service.address.guessPosition()
             const newAdmin = {
                 id: admin_id,
                 create_time: dtime().format('YYYY-MM-DD HH:mm'),
-                // city: cityInfo.city,
-                city: '武汉',
+                city: cityInfo.city,
                 admin: adminTip,
                 status,
             }
+            
             ctx.request.body.password = pwd
             Object.assign(newAdmin, ctx.request.body)
             user = await ctx.model.Admin.create(newAdmin)
