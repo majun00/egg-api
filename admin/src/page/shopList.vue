@@ -152,8 +152,8 @@ export default {
         async getRestaurants() {
             // const { latitude, longitude } = this.city
             const restaurants = await getRestaurants({
-                latitude,
-                logitude,
+                // latitude,
+                // logitude,
                 offfset: this.offset,
                 limit: this.limit
             })
@@ -219,7 +219,7 @@ export default {
             }
         },
 
-        async updataShlop() {
+        async updateShop() {
             this.dialogFormVisible = false
             try {
                 // Object.assign(this.selectTable,this.address)
