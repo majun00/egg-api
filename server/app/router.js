@@ -6,7 +6,6 @@
 module.exports = app => {
   const { router, controller, middlewares } = app
   // const checkApiToken = middlewares.checkApiToken()
-  router.get('/', controller.home.index)
   router.post('/admin/login', controller.admin.login)
   router.get('/admin/info', controller.admin.getAdminInfo)
   router.get('/admin/signout', controller.admin.signout)
