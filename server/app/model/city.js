@@ -7,7 +7,8 @@ module.exports = app => {
         data: {}
     })
 
-    citySchema.statics.cityGuess = (name) => {
+    // 注意这里不能用箭头函数
+    citySchema.statics.cityGuess = function(name) {
         return new Promise(async (resolve, reject) => {
             const firtWord = name.substr(0, 1).toUpperCase()
             try {
@@ -31,7 +32,7 @@ module.exports = app => {
         })
     }
 
-    citySchema.statics.cityHot = () => {
+    citySchema.statics.cityHot = function() {
         return new Promise(async (resolve, reject) => {
             try {
                 const city = await this.findOne()
@@ -45,7 +46,7 @@ module.exports = app => {
         })
     }
 
-    citySchema.statics.cityGroup = () => {
+    citySchema.statics.cityGroup = function() {
         return new Promise(async (resolve, reject) => {
             try {
                 const city = await this.findOne()
@@ -62,7 +63,7 @@ module.exports = app => {
         })
     }
 
-    citySchema.statics.getCityById = (id) => {
+    citySchema.statics.getCityById = function(id) {
         return new Promise(async (resolve, reject) => {
             try {
                 const city = await this.findOne();

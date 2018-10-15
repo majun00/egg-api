@@ -203,10 +203,10 @@ export default {
         headTop
     },
     mounted() {
-        // this.initData();
+        this.initData();
     },
     methods: {
-        // async initData() {
+        async initData() {
         //     try {
         //         this.city = await cityGuess();
         //         const categories = await foodCategory();
@@ -233,7 +233,7 @@ export default {
         //     } catch (err) {
         //         console.log(err);
         //     }
-        // },
+        },
         // async querySearchAsync(queryString, cb) {
         //     if (queryString) {
         //         try {

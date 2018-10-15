@@ -19,6 +19,9 @@ module.exports = app => {
   router.post('/shopping/updateshop', controller.shop.updateshop)
   router.delete('/shopping/restaurant/:restaurant_id', controller.shop.deleteResturant)
 
+  router.get('/v1/cities', controller.city.getCity)
+  router.get('/v1/pois', controller.search.search)
+  
   // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
   // router.resources('auth', '/v1/auth', controller.auth)
   // router.delete('/v1/auth', controller.auth.destroy)
