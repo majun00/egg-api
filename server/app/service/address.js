@@ -69,8 +69,9 @@ class AddressService extends Service {
 
     // 搜索地址
     async searchPlace(keyword, cityName, type = 'search') {
+        const ctx = this.ctx
         try {
-            const resObj = await ctx.curl('http://apis.map.qq.com/ws/place/v1/search', {
+            const resObj = (await ctx.curl('http://apis.map.qq.com/ws/place/v1/search', {
                 data: {
                     key: tencentkey,
                     keyword: encodeURIComponent(keyword),
@@ -78,7 +79,7 @@ class AddressService extends Service {
                     page_size: 10,
                 },
                 dataType: 'json',
-            })
+            })).data
             if (resObj.status == 0) {
                 return resObj
             } else {

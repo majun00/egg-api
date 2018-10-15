@@ -2,7 +2,7 @@ const Controller = require('egg').Controller
 
 class searchController extends Controller {
     async search() {
-        await this.service.search.search
+        await this.service.search.search()
     }
 
 }

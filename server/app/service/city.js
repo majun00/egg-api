@@ -26,7 +26,7 @@ class CityService extends Service {
                     return
             }
             ctx.body = {
-                cityInfo
+                data: cityInfo
             }
         } catch (err) {
             ctx.body = {

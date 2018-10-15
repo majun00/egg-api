@@ -8,7 +8,7 @@
                         <el-input v-model="formData.name"></el-input>
                     </el-form-item>
 
-                    <!-- <el-form-item label="详细地址" prop="address">
+                    <el-form-item label="详细地址" prop="address">
 						<el-autocomplete
 						  v-model="formData.address"
 						  :fetch-suggestions="querySearchAsync"
@@ -17,7 +17,7 @@
 						  @select="addressSelect"
 						></el-autocomplete>
 						<span>当前城市：{{city.name}}</span>
-					</el-form-item> -->
+					</el-form-item>
 
                     <el-form-item label="联系电话" prop="phone">
                         <el-input v-model.number="formData.phone" maxLength="11"></el-input>
@@ -207,54 +207,53 @@ export default {
     },
     methods: {
         async initData() {
-        //     try {
-        //         this.city = await cityGuess();
-        //         const categories = await foodCategory();
-        //         categories.forEach(item => {
-        //             if (item.sub_categories.length) {
-        //                 const addnew = {
-        //                     value: item.name,
-        //                     label: item.name,
-        //                     children: []
-        //                 }
-        //                 item.sub_categories.forEach((subitem, index) => {
-        //                     if (index == 0) {
-        //                         return
-        //                     }
-        //                     addnew.children.push({
-        //                         value: subitem.name,
-        //                         label: subitem.name,
-        //                     })
-        //                 })
-        //                 this.categoryOptions.push(addnew)
-
-        //             }
-        //         })
-        //     } catch (err) {
-        //         console.log(err);
-        //     }
+            try {
+                this.city = await cityGuess();
+                // const categories = await foodCategory();
+                // categories.forEach(item => {
+                //     if (item.sub_categories.length) {
+                //         const addnew = {
+                //             value: item.name,
+                //             label: item.name,
+                //             children: []
+                //         }
+                //         item.sub_categories.forEach((subitem, index) => {
+                //             if (index == 0) {
+                //                 return
+                //             }
+                //             addnew.children.push({
+                //                 value: subitem.name,
+                //                 label: subitem.name,
+                //             })
+                //         })
+                //         this.categoryOptions.push(addnew)
+                //     }
+                // })
+            } catch (err) {
+                console.log(err);
+            }
         },
-        // async querySearchAsync(queryString, cb) {
-        //     if (queryString) {
-        //         try {
-        //             const cityList = await searchplace(this.city.id, queryString);
-        //             if (cityList instanceof Array) {
-        //                 cityList.map(item => {
-        //                     item.value = item.address;
-        //                     return item;
-        //                 })
-        //                 cb(cityList)
-        //             }
-        //         } catch (err) {
-        //             console.log(err)
-        //         }
-        //     }
-        // },
-        // addressSelect(address) {
-        //     this.formData.latitude = address.latitude;
-        //     this.formData.longitude = address.longitude;
-        //     console.log(this.formData.latitude, this.formData.longitude)
-        // },
+        async querySearchAsync(queryString, cb) {
+            if (queryString) {
+                try {
+                    const cityList = (await searchplace(this.city.id, queryString)).data
+                    if (cityList instanceof Array) {
+                        cityList.map(item => {
+                            item.value = item.address;
+                            return item;
+                        })
+                        cb(cityList)
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        },
+        addressSelect(address) {
+            this.formData.latitude = address.latitude;
+            this.formData.longitude = address.longitude;
+            console.log(this.formData.latitude, this.formData.longitude)
+        },
 
         beforeAvatarUpload(file) {
             const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png')
@@ -274,7 +273,7 @@ export default {
                 this.$message.error('上传图片失败！')
             }
         },
-        handleBussinessAvatarSuccess(res, file) {
+        handleBusinessAvatarSuccess(res, file) {
             if (res.status == 1) {
                 this.formData.business_license_image = res.image_path
             } else {
