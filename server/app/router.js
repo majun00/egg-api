@@ -20,6 +20,8 @@ module.exports = app => {
 
   router.get('/v1/cities', controller.city.getCity)
   router.get('/v1/pois', controller.search.search)
+
+  router.get('/shopping/v2/restaurant/category', controller.category.getCategories)
   
   // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
   // router.resources('auth', '/v1/auth', controller.auth)

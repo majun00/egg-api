@@ -31,7 +31,6 @@ class AdminController extends Controller {
         await this.service.admin.getAdminCount()
     }
 
-
 }
 
 module.exports = AdminController
