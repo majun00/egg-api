@@ -31,13 +31,13 @@
                         <el-input v-model="formData.promotion_info"></el-input>
                     </el-form-item>
 
-                    <!-- <el-form-item label="店铺分类">
+                    <el-form-item label="店铺分类">
 						<el-cascader
 						  :options="categoryOptions"
 						  v-model="selectedCategory"
 						  change-on-select
 						></el-cascader>
-					</el-form-item> -->
+					</el-form-item>
 
                     <el-form-item label="店铺特点" style="white-space: nowrap;">
                         <span>品牌保证</span>
@@ -209,26 +209,26 @@ export default {
         async initData() {
             try {
                 this.city = await cityGuess();
-                // const categories = await foodCategory();
-                // categories.forEach(item => {
-                //     if (item.sub_categories.length) {
-                //         const addnew = {
-                //             value: item.name,
-                //             label: item.name,
-                //             children: []
-                //         }
-                //         item.sub_categories.forEach((subitem, index) => {
-                //             if (index == 0) {
-                //                 return
-                //             }
-                //             addnew.children.push({
-                //                 value: subitem.name,
-                //                 label: subitem.name,
-                //             })
-                //         })
-                //         this.categoryOptions.push(addnew)
-                //     }
-                // })
+                const categories=await foodCategory()
+                categories.forEach(item=>{
+                    if(item.sub_categories.length){
+                        const addnew={
+                            value:item.name,
+                            label:item.name,
+                            children:[]
+                        }
+                        item.sub_categories.forEach((subitem,index)=>{
+                            if(index==0){
+                                return
+                            }
+                            addnew.children.push({
+                                value:subitem.name,
+                                label:subitem.name,
+                            })
+                        })
+                        this.categoryOptions.push(addnew)
+                    }
+                })
             } catch (err) {
                 console.log(err);
             }
