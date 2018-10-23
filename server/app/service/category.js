@@ -5,9 +5,7 @@ class FoodService extends Service {
     async getCategories() {
         try {
             const categories = await this.ctx.model.Category.find({}, '-_id')
-            this.ctx.body = {
-                data: categories
-            }
+            this.ctx.body = categories
         } catch (err) {
             res.send({
                 status: 0,

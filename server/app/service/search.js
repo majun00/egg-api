@@ -35,9 +35,7 @@ class searchService extends Service {
                     geohash: item.location.lat + ',' + item.location.lng,
                 })
             })
-            ctx.body = {
-                data: cityList
-            }
+            ctx.body = cityList
         } catch (err) {
             ctx.body = {
                 name: 'GET_ADDRESS_ERROR',

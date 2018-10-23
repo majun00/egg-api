@@ -1,5 +1,7 @@
 # bxg-api
 
+## 待解决问题
+1. gm图片处理无效
 
 
 ## QuickStart

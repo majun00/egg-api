@@ -9,15 +9,9 @@
                     </el-form-item>
 
                     <el-form-item label="详细地址" prop="address">
-						<el-autocomplete
-						  v-model="formData.address"
-						  :fetch-suggestions="querySearchAsync"
-						  placeholder="请输入地址"
-						  style="width: 100%;"
-						  @select="addressSelect"
-						></el-autocomplete>
-						<span>当前城市：{{city.name}}</span>
-					</el-form-item>
+                        <el-autocomplete v-model="formData.address" :fetch-suggestions="querySearchAsync" placeholder="请输入地址" style="width: 100%;" @select="addressSelect"></el-autocomplete>
+                        <span>当前城市：{{city.name}}</span>
+                    </el-form-item>
 
                     <el-form-item label="联系电话" prop="phone">
                         <el-input v-model.number="formData.phone" maxLength="11"></el-input>
@@ -32,12 +26,8 @@
                     </el-form-item>
 
                     <el-form-item label="店铺分类">
-						<el-cascader
-						  :options="categoryOptions"
-						  v-model="selectedCategory"
-						  change-on-select
-						></el-cascader>
-					</el-form-item>
+                        <el-cascader :options="categoryOptions" v-model="selectedCategory" change-on-select></el-cascader>
+                    </el-form-item>
 
                     <el-form-item label="店铺特点" style="white-space: nowrap;">
                         <span>品牌保证</span>
@@ -209,21 +199,21 @@ export default {
         async initData() {
             try {
                 this.city = await cityGuess();
-                const categories=await foodCategory()
-                categories.forEach(item=>{
-                    if(item.sub_categories.length){
-                        const addnew={
-                            value:item.name,
-                            label:item.name,
-                            children:[]
+                const categories = await foodCategory()
+                categories.forEach(item => {
+                    if (item.sub_categories.length) {
+                        const addnew = {
+                            value: item.name,
+                            label: item.name,
+                            children: []
                         }
-                        item.sub_categories.forEach((subitem,index)=>{
-                            if(index==0){
+                        item.sub_categories.forEach((subitem, index) => {
+                            if (index == 0) {
                                 return
                             }
                             addnew.children.push({
-                                value:subitem.name,
-                                label:subitem.name,
+                                value: subitem.name,
+                                label: subitem.name,
                             })
                         })
                         this.categoryOptions.push(addnew)
@@ -233,10 +223,11 @@ export default {
                 console.log(err);
             }
         },
+        
         async querySearchAsync(queryString, cb) {
             if (queryString) {
                 try {
-                    const cityList = (await searchplace(this.city.id, queryString)).data
+                    const cityList = await searchplace(this.city.id, queryString)
                     if (cityList instanceof Array) {
                         cityList.map(item => {
                             item.value = item.address;
@@ -252,7 +243,6 @@ export default {
         addressSelect(address) {
             this.formData.latitude = address.latitude;
             this.formData.longitude = address.longitude;
-            console.log(this.formData.latitude, this.formData.longitude)
         },
 
         beforeAvatarUpload(file) {
@@ -261,10 +251,10 @@ export default {
             if (!isRightType) {
                 this.$message.error('上传头像图片只能是 JPG 格式!')
             }
-            if (!isLT2M) {
+            if (!isLt2M) {
                 this.$message.error('上传头像图片大小不能超过 2MB!')
             }
-            return isRightType && isLT2M
+            return isRightType && isLt2M
         },
         handleShopAvatarSuccess(res, file) {
             if (res.status == 1) {

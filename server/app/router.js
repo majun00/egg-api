@@ -22,6 +22,8 @@ module.exports = app => {
   router.get('/v1/pois', controller.search.search)
 
   router.get('/shopping/v2/restaurant/category', controller.category.getCategories)
+
+  router.post('/v1/addimg/:type', controller.upload.upload);
   
   // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
   // router.resources('auth', '/v1/auth', controller.auth)

@@ -25,9 +25,7 @@ class CityService extends Service {
                     }
                     return
             }
-            ctx.body = {
-                data: cityInfo
-            }
+            ctx.body = cityInfo
         } catch (err) {
             ctx.body = {
                 name: 'ERROR_DATA',

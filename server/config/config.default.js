@@ -29,6 +29,14 @@ module.exports = appInfo => {
         origin: '*',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
     }
+    
+    config.multipart = {
+        mode: 'file',
+    };
+
+    config.static = {
+        
+    };
 
     return config;
 };
