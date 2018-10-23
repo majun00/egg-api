@@ -15,7 +15,13 @@ class FoodService extends Service {
         }
     }
 
-    async addCategory(type) {}
+    async addCategory(type) {
+        try {
+            await this.ctx.model.category.addCategory(type)
+        } catch (err) {
+			console.log('增加category数量失败');
+        }
+    }
 
     async findById(id) {}
 

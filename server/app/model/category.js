@@ -20,6 +20,27 @@ module.exports = app => {
     });
 
     categorySchema.static.addCategory = async function(type) {
+        const categoryName = type.split('/')
+        try {
+            const allcate = await this.findOne()
+            const subcate = await this.findOne({
+                name: categoryName[0]
+            })
+            allcate.count++;
+            subcate.count++;
+            subcate.sub_categories.map(item => {
+                if (item.name == categoryName[1]) {
+                    return item.count++
+                }
+            })
+            await allcate.save();
+            await subcate.save();
+            console.log('保存cetegroy成功');
+            return
+        } catch (err) {
+            console.log('保存cetegroy失败');
+            throw new Error(err)
+        }
 
     }
 

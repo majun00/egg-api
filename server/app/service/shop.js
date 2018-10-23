@@ -15,27 +15,28 @@ class ShopService extends Service {
             return
         }
 
-        // try {
-        //     if (!fields.name) {
-        //         throw new Error('必须填写商店名称');
-        //     } else if (!fields.address) {
-        //         throw new Error('必须填写商店地址');
-        //     } else if (!fields.phone) {
-        //         throw new Error('必须填写联系电话');
-        //     } else if (!fields.latitude || !fields.longitude) {
-        //         throw new Error('商店位置信息错误');
-        //     } else if (!fields.image_path) {
-        //         throw new Error('必须上传商铺图片');
-        //     } else if (!fields.category) {
-        //         throw new Error('必须上传食品种类');
-        //     }
-        // } catch (err) {
-        //     ctx.body = {
-        //         status: 0,
-        //         message: err.message
-        //     }
-        //     return
-        // }
+        try {
+            if (!fields.name) {
+                throw new Error('必须填写商店名称');
+            } else if (!fields.address) {
+                throw new Error('必须填写商店地址');
+            } else if (!fields.phone) {
+                throw new Error('必须填写联系电话');
+            } else if (!fields.latitude || !fields.longitude) {
+                throw new Error('商店位置信息错误');
+            } else if (!fields.image_path) {
+                throw new Error('必须上传商铺图片');
+            } else if (!fields.category) {
+                throw new Error('必须上传食品种类');
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: err.message
+            }
+            return
+        }
 
         const exists = await ctx.model.Shop.findOne({ name: fields.name })
         if (exists) {
@@ -56,9 +57,9 @@ class ShopService extends Service {
             id: restaurant_id,
             is_premium: fields.is_premium || false,
             is_new: fields.new || false,
-            // latitude: fields.latitude,
-            // longitude: fields.longitude,
-            // location: [fields.longitude, fields.latitude],
+            latitude: fields.latitude,
+            longitude: fields.longitude,
+            location: [fields.longitude, fields.latitude],
             opening_hours: [opening_hours],
             phone: fields.phone,
             promotion_info: fields.promotion_info || "欢迎光临，用餐高峰请提前下单，谢谢",
@@ -92,77 +93,80 @@ class ShopService extends Service {
         }
 
         //配送方式
-        // if (fields.delivery_mode) {
-        //     Object.assign(newShop, {
-        //         delivery_mode: {
-        //             color: "57A9FF",
-        //             id: 1,
-        //             is_solid: true,
-        //             text: "蜂鸟专送"
-        //         }
-        //     })
-        // }
+        if (fields.delivery_mode) {
+            Object.assign(newShop, {
+                delivery_mode: {
+                    color: "57A9FF",
+                    id: 1,
+                    is_solid: true,
+                    text: "蜂鸟专送"
+                }
+            })
+        }
 
         //商店支持的活动
-        // fields.activities.forEach((item, index) => {
-        //     switch (item.icon_name) {
-        //         case '减':
-        //             item.icon_color = 'f07373';
-        //             item.id = index + 1;
-        //             break;
-        //         case '特':
-        //             item.icon_color = 'EDC123';
-        //             item.id = index + 1;
-        //             break;
-        //         case '新':
-        //             item.icon_color = '70bc46';
-        //             item.id = index + 1;
-        //             break;
-        //         case '领':
-        //             item.icon_color = 'E3EE0D';
-        //             item.id = index + 1;
-        //             break;
-        //     }
-        //     newShop.activities.push(item);
-        // })
+        fields.activities.forEach((item, index) => {
+            switch (item.icon_name) {
+                case '减':
+                    item.icon_color = 'f07373';
+                    item.id = index + 1;
+                    break;
+                case '特':
+                    item.icon_color = 'EDC123';
+                    item.id = index + 1;
+                    break;
+                case '新':
+                    item.icon_color = '70bc46';
+                    item.id = index + 1;
+                    break;
+                case '领':
+                    item.icon_color = 'E3EE0D';
+                    item.id = index + 1;
+                    break;
+            }
+            newShop.activities.push(item);
+        })
 
-        // if (fields.bao) {
-        //     newShop.supports.push({
-        //         description: "已加入“外卖保”计划，食品安全有保障",
-        //         icon_color: "999999",
-        //         icon_name: "保",
-        //         id: 7,
-        //         name: "外卖保"
-        //     })
-        // }
+        if (fields.bao) {
+            newShop.supports.push({
+                description: "已加入“外卖保”计划，食品安全有保障",
+                icon_color: "999999",
+                icon_name: "保",
+                id: 7,
+                name: "外卖保"
+            })
+        }
 
-        // if (fields.zhun) {
-        //     newShop.supports.push({
-        //         description: "准时必达，超时秒赔",
-        //         icon_color: "57A9FF",
-        //         icon_name: "准",
-        //         id: 9,
-        //         name: "准时达"
-        //     })
-        // }
+        if (fields.zhun) {
+            newShop.supports.push({
+                description: "准时必达，超时秒赔",
+                icon_color: "57A9FF",
+                icon_name: "准",
+                id: 9,
+                name: "准时达"
+            })
+        }
 
-        // if (fields.piao) {
-        //     newShop.supports.push({
-        //         description: "该商家支持开发票，请在下单时填写好发票抬头",
-        //         icon_color: "999999",
-        //         icon_name: "票",
-        //         id: 4,
-        //         name: "开发票"
-        //     })
-        // }
+        if (fields.piao) {
+            newShop.supports.push({
+                description: "该商家支持开发票，请在下单时填写好发票抬头",
+                icon_color: "999999",
+                icon_name: "票",
+                id: 4,
+                name: "开发票"
+            })
+        }
 
         try {
             const shop = await ctx.model.Shop.create(newShop)
             // const shop = new ShopModel(newShop);
             // await shop.save();
-            // CategoryHandle.addCategory(fields.category)
+            await this.service.category.addCategory(fields.category)
+
+            // 3 dai
             // Rating.initData(restaurant_id);
             // Food.initData(restaurant_id);
+            
             ctx.body = {
                 status: 1,
                 success: '添加餐馆成功',
@@ -171,7 +175,7 @@ class ShopService extends Service {
         } catch (err) {
             ctx.body = {
                 status: 0,
-                message: '添加商铺失败'+err
+                message: '添加商铺失败' + err
             }
         }
 
@@ -184,7 +188,7 @@ class ShopService extends Service {
             const count = await ctx.model.Shop.count()
             ctx.body = {
                 status: 1,
-                data:count
+                data: count
             }
         } catch (err) {
             ctx.body = {
@@ -201,14 +205,14 @@ class ShopService extends Service {
             // latitude,
             // longitude,
             offset = 0,
-            limit = 20,
-            // keyword,
-            // restaurant_category_id,
-            // order_by,
-            // extras,
-            // delivery_mode = [],
-            // support_ids = [],
-            // restaurant_category_ids = [],
+                limit = 20,
+                // keyword,
+                // restaurant_category_id,
+                // order_by,
+                // extras,
+                // delivery_mode = [],
+                // support_ids = [],
+                // restaurant_category_ids = [],
         } = ctx.request.body
 
         // try {
