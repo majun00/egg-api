@@ -288,7 +288,7 @@ export default {
         },
 
         selectActivity() {
-            this.$promot('请输入活动详情', '提示', {
+            this.$prompt('请输入活动详情', '提示', {
                 confirmButtonText: '确定',
                 cancleButtonText: '取消'
             }).then(({ value }) => {
@@ -344,10 +344,11 @@ export default {
         },
 
         submitForm(formName) {
+            console.log(1)
             this.$refs[formName].validate(async (valid) => {
                 if (valid) {
                     Object.assign(this.formData, { activities: this.activities }, {
-                        category: this.selectedCategor.join('/')
+                        category: this.selectedCategory.join('/')
                     })
                     try {
                         let result = await addShop(this.formData)
@@ -392,6 +393,7 @@ export default {
                     }
 
                 } else {
+                    console.log('err')
                     this.$notify.error({
                         title: '错误',
                         message: '请检查输入是否正确',
