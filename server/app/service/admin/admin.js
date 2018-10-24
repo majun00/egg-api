@@ -81,8 +81,8 @@ class AdminService extends Service {
     async getAdminInfo() {
         // 模拟单元测试
         const ctx = this.ctx
-        const status = await ctx.model.Food.find()
-        console.log('--',status)
+        const status = await ctx.service.shopping.category.getCategories()
+        console.log('[test]',status)
         ctx.body=status
         return
         // const ctx = this.ctx

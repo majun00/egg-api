@@ -16,7 +16,7 @@ class AddressService extends Service {
             //     ctx.request.connection.socket.remoteAddress;
             // const ipArr = ip.split(':');
             // ip = ipArr[ipArr.length - 1];
-            // console.log('--ip', ip)
+            // console.log('[ip]', ip)
             // if (process.env.NODE_ENV == 'development') {
             //     ip = '180.158.102.141';
             // }

@@ -67,8 +67,8 @@ class ShopService extends Service {
             rating_count: Math.ceil(Math.random() * 1000),
             recent_order_num: Math.ceil(Math.random() * 1000),
             status: Math.round(Math.random()),
-            image_path: 'fields.image_path',
-            category: 'fields.category',
+            image_path: fields.image_path,
+            category: fields.category,
             piecewise_agent_fee: {
                 tips: "配送费约¥" + (fields.float_delivery_fee || 0),
             },
@@ -164,7 +164,7 @@ class ShopService extends Service {
             await ctx.service.shopping.category.addCategory(fields.category)
             await ctx.service.ugc.rating.initData(restaurant_id)
             await ctx.service.shopping.food.initData(restaurant_id)
-            
+
             ctx.body = {
                 status: 1,
                 success: '添加餐馆成功',
@@ -200,39 +200,42 @@ class ShopService extends Service {
     async getRestaurants() {
         const ctx = this.ctx
         const {
-            // latitude,
-            // longitude,
+            latitude,
+            longitude,
             offset = 0,
-                limit = 20,
-                // keyword,
-                // restaurant_category_id,
-                // order_by,
-                // extras,
-                // delivery_mode = [],
-                // support_ids = [],
-                // restaurant_category_ids = [],
-        } = ctx.request.body
+            limit = 20,
+            keyword,
+            restaurant_category_id,
+            order_by,
+            extras,
+            delivery_mode = [],
+            support_ids = [],
+            restaurant_category_ids = [],
+        } = ctx.query
 
-        // try {
-        //     if (!latitude) {
-        //         throw new Error('latitude参数错误')
-        //     } else if (!longitude) {
-        //         throw new Error('longitude参数错误');
-        //     }
-        // } catch (err) {
-        //     ctx.body = {
-        //         status: 0,
-        //         message: err.message
-        //     }
-        //     return
-        // }
+        console.log('[request]', JSON.stringify(ctx.query))
+
+        try {
+            if (!latitude) {
+                throw new Error('latitude参数错误')
+            } else if (!longitude) {
+                throw new Error('longitude参数错误');
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                message: err.message
+            }
+            return
+        }
 
         //获取对应食品种类
         let filter = {}
         // if (restaurant_category_ids.length && Number(restaurant_category_ids[0])) {
-        //     const category = await CategoryHandle.findById(restaurant_category_ids[0]);
+        //     const category = await ctx.service.shopping.category.findById(restaurant_category_ids[0]);
         //     Object.assign(filter, { category })
         // }
+        // console.log('[filter]', JSON.stringify(filter))
 
         //按照距离，评分，销量等排序
         let sortBy = {};
@@ -299,7 +302,7 @@ class ShopService extends Service {
         //         })
         //     }
         // } catch (err) {
-        //     // 百度地图达到上限后会导致加车失败，需优化
+        //     // 百度地图达到上限后会导致加载失败，需优化
         //     console.log('从addressComoponent获取测距数据失败', err);
         //     restaurants.map((item, index) => {
         //         return Object.assign(item, { distance: '10公里', order_lead_time: '40分钟' })
@@ -320,11 +323,96 @@ class ShopService extends Service {
     // POST /shopping/updateshop
     async updateshop() {
         const ctx = this.ctx
+        const { name, address, description = "", phone, category, id, latitude, longitude, image_path } = ctx.request.body;
+
+        if (id == 1) {
+            ctx.body = ({
+                status: 0,
+                message: '此店铺用做展示，请不要修改'
+            })
+            return
+        }
+
+        try {
+            if (!name) {
+                throw new Error('餐馆名称错误');
+            } else if (!address) {
+                throw new Error('餐馆地址错误');
+            } else if (!phone) {
+                throw new Error('餐馆联系电话错误');
+            } else if (!category) {
+                throw new Error('餐馆分类错误');
+            } else if (!id || !Number(id)) {
+                throw new Error('餐馆ID错误');
+            } else if (!image_path) {
+                throw new Error('餐馆图片地址错误');
+            }
+
+            let newData;
+            if (latitude && longitude) {
+                newData = { name, address, description, phone, category, latitude, longitude, image_path }
+            } else {
+                newData = { name, address, description, phone, category, image_path }
+            }
+
+            await ctx.model.Shop.findOneAndUpdate({ id }, { $set: newData })
+
+            ctx.body = ({
+                status: 1,
+                success: '修改商铺信息成功',
+            })
+
+        } catch (err) {
+            console.log(err.message, err);
+            ctx.body = ({
+                status: 0,
+                type: 'ERROR_UPDATE_RESTAURANT',
+                message: '更新商铺信息失败',
+            })
+        }
+
+
+
+
     }
 
     // DELETE /shopping/restaurant/:restaurant_id
     async deleteResturant() {
         const ctx = this.ctx
+        const restaurant_id = ctx.params.restaurant_id;
+
+        if (!restaurant_id || !Number(restaurant_id)) {
+            console.log('restaurant_id参数错误');
+            ctx.body = ({
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: 'restaurant_id参数错误',
+            })
+            return
+        }
+
+        if (restaurant_id == 1) {
+            ctx.body = ({
+                status: 0,
+                message: '此店铺用做展示，请不要删除'
+            })
+            return
+        }
+        try {
+            await ctx.model.Shop.remove({ id: restaurant_id });
+            ctx.body = ({
+                status: 1,
+                success: '删除餐馆成功',
+            })
+        } catch (err) {
+            console.log('删除餐馆失败', err);
+            ctx.body = ({
+                status: 0,
+                type: 'DELETE_RESTURANT_FAILED',
+                message: '删除餐馆失败',
+            })
+        }
+
     }
 
 

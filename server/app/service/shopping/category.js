@@ -23,7 +23,21 @@ class FoodService extends Service {
         }
     }
 
-    async findById(id) {}
+    async findById(id) {
+        try {
+            const CateEntity = await this.ctx.model.Category.findOne({ 'sub_categories.id': id })
+            let categoName=CateEntity.name
+            CateEntity.sub_categories.forEach(item => {
+                if (item.id == id) {
+                    categoName += '/' + item.name;
+                }
+            })
+            return categoName
+        } catch (err) {
+            console.log('通过category id获取数据失败')
+            throw new Error(err)
+        }
+    }
 
     async getDelivery() {}
 
