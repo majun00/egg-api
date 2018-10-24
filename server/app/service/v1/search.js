@@ -12,7 +12,7 @@ class searchService extends Service {
             return
         } else if (isNaN(city_id)) {
             try {
-                const cityName = await ctx.service.city.getCityName()
+                const cityName = await ctx.service.v1.city.getCityName()
                 const cityInfo = await ctx.model.City.cityGuess(cityName)
                 city_id = cityInfo.id
             } catch (err) {

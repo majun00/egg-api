@@ -17,9 +17,9 @@ class FoodService extends Service {
 
     async addCategory(type) {
         try {
-            await this.ctx.model.category.addCategory(type)
+            await this.ctx.model.Category.addCategory(type)
         } catch (err) {
-			console.log('增加category数量失败');
+			console.log('增加category数量失败',err);
         }
     }
 

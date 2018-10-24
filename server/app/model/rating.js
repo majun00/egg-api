@@ -1,5 +1,4 @@
-// 1数据引入
-// import { ratingList, scores, tags } from '../../InitData/rate'
+const ratingData = require('../InitData/rate')
 
 module.exports = app => {
     const mongoose = app.mongoose
@@ -39,15 +38,15 @@ module.exports = app => {
 
     ratingSchema.index({ restaurant_id: 1 });
 
-    ratingSchema.static.initData = async function(restaurant_id) {
+    ratingSchema.statics.initData = async function(restaurant_id) {
         try {
             const data = await this.findOne({ restaurant_id })
             if (!data) {
                 const newRating = {
                     restaurant_id,
-                    rating: ratingList,
-                    scores,
-                    tags
+                    rating: ratingData.ratingList,
+                    scores: ratingData.scores,
+                    tags: ratingData.tags
                 }
                 await this.create(newRating)
                 return true
@@ -60,7 +59,7 @@ module.exports = app => {
         }
     }
 
-    rateSchema.statics.getData = async function(restaurant_id, type) {
+    ratingSchema.statics.getData = async function(restaurant_id, type) {
 
     }
 

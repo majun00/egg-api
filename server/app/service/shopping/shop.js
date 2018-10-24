@@ -161,11 +161,9 @@ class ShopService extends Service {
             const shop = await ctx.model.Shop.create(newShop)
             // const shop = new ShopModel(newShop);
             // await shop.save();
-            await this.service.category.addCategory(fields.category)
-
-            // 3 dai
-            // Rating.initData(restaurant_id);
-            // Food.initData(restaurant_id);
+            await ctx.service.shopping.category.addCategory(fields.category)
+            await ctx.service.ugc.rating.initData(restaurant_id)
+            await ctx.service.shopping.food.initData(restaurant_id)
             
             ctx.body = {
                 status: 1,

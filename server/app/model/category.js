@@ -19,8 +19,9 @@ module.exports = app => {
         }, ]
     });
 
-    categorySchema.static.addCategory = async function(type) {
+    categorySchema.statics.addCategory = async function(type) {
         const categoryName = type.split('/')
+
         try {
             const allcate = await this.findOne()
             const subcate = await this.findOne({
