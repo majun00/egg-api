@@ -31,6 +31,14 @@ class AdminController extends Controller {
         await this.service.admin.admin.getAdminCount()
     }
 
+    async register() {
+        await this.service.admin.admin.register()
+    }
+    
+    async updateAvatar() {
+        await this.service.admin.admin.updateAvatar()
+    }
+
 }
 
 module.exports = AdminController

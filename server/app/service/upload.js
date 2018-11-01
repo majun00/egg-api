@@ -20,11 +20,11 @@ class UploadService extends Service {
             }
         } catch (err) {
             console.log('上传图片失败', err);
-            ctx.body = ({
+            ctx.body = {
                 status: 0,
                 type: 'ERROR_UPLOAD_IMG',
                 message: '上传图片失败'
-            })
+            }
         }
     }
 

@@ -17,7 +17,7 @@
 						<el-menu-item index="addShop">添加商铺</el-menu-item>
 						<el-menu-item index="addGoods">添加商品</el-menu-item>
 					</el-submenu>
-					<!-- <el-submenu index="4">
+					<el-submenu index="4">
 						<template slot="title"><i class="el-icon-star-on"></i>图表</template>
 						<el-menu-item index="visitor">用户分布</el-menu-item>
 					</el-submenu>
@@ -25,11 +25,11 @@
 						<template slot="title"><i class="el-icon-edit"></i>编辑</template>
 						<el-menu-item index="vueEdit">文本编辑</el-menu-item>
 					</el-submenu>
-					<el-submenu index="6">
+					<!-- <el-submenu index="6">
 						<template slot="title"><i class="el-icon-setting"></i>设置</template>
 						<el-menu-item index="adminSet">管理员设置</el-menu-item>
-					</el-submenu>
-					<el-submenu index="7">
+					</el-submenu> -->
+					<!-- <el-submenu index="7">
 						<template slot="title"><i class="el-icon-warning"></i>说明</template>
 						<el-menu-item index="explain">说明</el-menu-item>
 					</el-submenu> -->

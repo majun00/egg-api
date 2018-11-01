@@ -179,23 +179,6 @@ class ShopService extends Service {
 
     }
 
-    // GET /shopping/restaurants/count
-    async getShopCount() {
-        const ctx = this.ctx
-        try {
-            const count = await ctx.model.Shop.count()
-            ctx.body = {
-                status: 1,
-                data: count
-            }
-        } catch (err) {
-            ctx.body = {
-                status: 0,
-                message: '获取餐馆数量失败'
-            }
-        }
-    }
-
     // GET /shopping/restaurants
     async getRestaurants() {
         const ctx = this.ctx
@@ -318,6 +301,54 @@ class ShopService extends Service {
             }
         }
 
+    }
+
+    async searchResaturant() {
+
+    }
+
+    async getRestaurantDetail() {
+        const ctx = this.ctx
+        const restaurant_id = ctx.params.restaurant_id;
+
+        if (!restaurant_id || !Number(restaurant_id)) {
+            console.log('获取餐馆详情参数ID错误');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: '餐馆ID参数错误',
+            }
+            return
+        }
+
+        try {
+            const restaurant = await ctx.model.Shop.findOne({ id: restaurant_id }, '-_id');
+            ctx.body = restaurant
+        } catch (err) {
+            console.log('获取餐馆详情失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'GET_DATA_ERROR',
+                message: '获取餐馆详情失败'
+            }
+        }
+    }
+
+    // GET /shopping/restaurants/count
+    async getShopCount() {
+        const ctx = this.ctx
+        try {
+            const count = await ctx.model.Shop.count()
+            ctx.body = {
+                status: 1,
+                data: count
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                message: '获取餐馆数量失败'
+            }
+        }
     }
 
     // POST /shopping/updateshop

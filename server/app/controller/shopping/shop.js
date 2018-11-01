@@ -6,14 +6,22 @@ class ShopController extends Controller {
         await this.service.shopping.shop.addShop()
     }
 
-    // GET /shopping/restaurants/count
-    async getShopCount() {
-        await this.service.shopping.shop.getShopCount()
-    }
-
     // GET /shopping/restaurants
     async getRestaurants() {
         await this.service.shopping.shop.getRestaurants()
+    } 
+    
+    async searchResaturant() {
+        await this.service.shopping.shop.searchResaturant()
+    }
+
+    async getRestaurantDetail() {
+        await this.service.shopping.shop.getRestaurantDetail()
+    }
+
+    // GET /shopping/restaurants/count
+    async getShopCount() {
+        await this.service.shopping.shop.getShopCount()
     }
 
     // POST /shopping/updateshop

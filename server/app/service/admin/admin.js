@@ -11,6 +11,22 @@ class AdminService extends Service {
         const { username, password, status = 1 } = ctx.request.body
         let message = '注册成功'
 
+        // try {
+        //     if (!user_name) {
+        //         throw new Error('用户名参数错误')
+        //     } else if (!password) {
+        //         throw new Error('密码参数错误')
+        //     }
+        // } catch (err) {
+        //     console.log(err.message, err);
+        //     ctx.body={
+        //         status: 0,
+        //         type: 'GET_ERROR_PARAM',
+        //         message: err.message,
+        //     }
+        //     return
+        // }
+
         // 数据校验
         ctx.validate({
             username: 'string',
@@ -35,7 +51,7 @@ class AdminService extends Service {
                 admin: adminTip,
                 status,
             }
-            
+
             ctx.request.body.password = pwd
             Object.assign(newAdmin, ctx.request.body)
             user = await ctx.model.Admin.create(newAdmin)
@@ -44,7 +60,8 @@ class AdminService extends Service {
                 ctx.status = 401
                 return ctx.body = {
                     status: 0,
-                    error: '账号或密码错误'
+                    type: 'ERROR_PASSWORD',
+                    message: '该用户已存在，密码输入错误',
                 }
             } else {
                 message = '登录成功'
@@ -82,8 +99,8 @@ class AdminService extends Service {
         // 模拟单元测试
         const ctx = this.ctx
         const status = await ctx.service.shopping.category.getCategories()
-        console.log('[test]',status)
-        ctx.body=status
+        console.log('[test]', status)
+        ctx.body = status
         return
         // const ctx = this.ctx
         // const admin_id = ctx.session.admin_id;
@@ -167,6 +184,9 @@ class AdminService extends Service {
         }
     }
 
+    async register() {}
+
+    async updateAvatar() {}
 
 }
 
