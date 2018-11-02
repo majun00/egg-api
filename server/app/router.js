@@ -5,7 +5,10 @@
  */
 module.exports = app => {
     const { router, controller, middlewares } = app
-    // const checkApiToken = middlewares.checkApiToken()
+    // 暂时不加登录拦截
+    // const checkApiToken = middlewares.checkAdmin()
+
+    //管理后台
     router.post('/admin/login', controller.admin.admin.login)
     router.get('/admin/info', controller.admin.admin.getAdminInfo)
     router.get('/admin/signout', controller.admin.admin.signout)
@@ -36,6 +39,11 @@ module.exports = app => {
     router.post('/v1/addimg/:type', controller.upload.upload);
     router.get('/v1/cities', controller.v1.city.getCity)
     router.get('/v1/pois', controller.v1.search.search)
+
+    // APP
+    router.post('/v1/captchas', controller.v1.captchas.getCaptchas);
+    router.post('/v2/login', controller.v2.user.login);
+
 
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
     // router.resources('auth', '/v1/auth', controller.auth)

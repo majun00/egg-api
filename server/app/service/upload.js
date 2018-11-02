@@ -33,6 +33,8 @@ class UploadService extends Service {
         let files = ctx.request.files[0]
         let img_id;
 
+        console.log('[files]',JSON.stringify(files))
+
         try {
             img_id = await ctx.helper.getId('img_id')
         } catch (err) {
@@ -115,7 +117,6 @@ class UploadService extends Service {
     //                 reject('保存至七牛失败')
     //             }
     //         });
-
     //     })
     // }
     // uptoken(bucket, key) {
@@ -133,11 +134,8 @@ class UploadService extends Service {
     //                 reject(err)
     //             }
     //         });
-
     //     })
     // }
-
-
 
 }
 

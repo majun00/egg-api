@@ -97,38 +97,38 @@ class AdminService extends Service {
     // GET /admin/info
     async getAdminInfo() {
         // 模拟单元测试
-        const ctx = this.ctx
-        const status = await ctx.service.shopping.category.getCategories()
-        console.log('[test]', status)
-        ctx.body = status
-        return
         // const ctx = this.ctx
-        // const admin_id = ctx.session.admin_id;
-        // if (!admin_id || !Number(admin_id)) {
-        //     ctx.body = {
-        //         status: 0,
-        //         message: '获取管理员信息失败'
-        //     }
-        //     return
-        // }
-        // try {
-        //     const info = await ctx.model.Admin.findOne({
-        //         id: admin_id
-        //     }, '-_id -__v -password')
-        //     if (!info) {
-        //         throw new Error('未找到当前管理员')
-        //     } else {
-        //         ctx.body = {
-        //             status: 1,
-        //             data: info
-        //         }
-        //     }
-        // } catch (err) {
-        //     ctx.body = {
-        //         status: 0,
-        //         message: '获取管理员信息失败'
-        //     }
-        // }
+        // const status = await ctx.service.shopping.category.getCategories()
+        // console.log('[test]', status)
+        // ctx.body = status
+        // return
+        const ctx = this.ctx
+        const admin_id = ctx.session.admin_id;
+        if (!admin_id || !Number(admin_id)) {
+            ctx.body = {
+                status: 0,
+                message: '获取管理员信息失败'
+            }
+            return
+        }
+        try {
+            const info = await ctx.model.Admin.findOne({
+                id: admin_id
+            }, '-_id -__v -password')
+            if (!info) {
+                throw new Error('未找到当前管理员')
+            } else {
+                ctx.body = {
+                    status: 1,
+                    data: info
+                }
+            }
+        } catch (err) {
+            ctx.body = {
+                status: 0,
+                message: '获取管理员信息失败'
+            }
+        }
     }
 
     // GET /admin/signout
