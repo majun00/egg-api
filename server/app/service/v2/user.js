@@ -88,6 +88,49 @@ class UserService extends Service {
 
     }
 
+    async getInfo() {
+        const ctx = this.ctx
+        const sid = ctx.session.user_id;
+        const qid = ctx.query.user_id;
+        const user_id = sid || qid;
+
+        if (!user_id || !Number(user_id)) {
+            console.log('获取用户信息的参数user_id无效', user_id)
+            ctx.body = {
+                status: 0,
+                type: 'GET_USER_INFO_FAIELD',
+                message: '通过session获取用户信息失败',
+            }
+            return
+        }
+
+        try {
+            const userinfo = await ctx.model.UserInfo.findOne({ user_id }, '-_id');
+            ctx.body = userinfo
+        } catch (err) {
+            console.log('通过session获取用户信息失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'GET_USER_INFO_FAIELD',
+                message: '通过session获取用户信息失败',
+            }
+        }
+    }
+
+    async getInfoById() {}
+
+    async signout() {}
+
+    async chanegPassword() {}
+
+    async getUserList() {}
+
+    async getUserCount() {}
+
+    async updateAvatar() {}
+
+    async getUserCity() {}
+
     encryption(password) {
         const newpassword = this.Md5(this.Md5(password).substr(2, 7) + this.Md5(password));
         return newpassword

@@ -41,19 +41,19 @@
         },
         mounted(){
             //获取用户信息
-            // this.getUserInfo();
+            this.getUserInfo();
 
         },
         props: ['signinUp', 'headTitle', 'goBack'],
         computed: {
-            // ...mapState([
-            //     'userInfo'
-            // ]),
+            ...mapState([
+                'userInfo'
+            ]),
         },
         methods: {
-            // ...mapActions([
-            //     'getUserInfo'
-            // ]),
+            ...mapActions([
+                'getUserInfo'
+            ]),
         },
 
     }

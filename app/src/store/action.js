@@ -13,8 +13,8 @@ export default {
         commit,
         state
     }) {
-        // let res = await getUser();
-        // commit(GET_USERINFO, res)
+        let res = await getUser();
+        commit(GET_USERINFO, res)
     },
     async saveAddress({
         commit,

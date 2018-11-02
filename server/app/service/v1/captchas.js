@@ -10,7 +10,6 @@ class CaptchasService extends Service {
         p.color(80, 80, 80, 255);
         const base64 = p.getBase64();
         ctx.cookies.set('cap', cap, { maxAge: 300000, httpOnly: true });
-        console.log('cookies', ctx.cookies.get('cap'))
         ctx.body = {
             status: 1,
             code: 'data:image/png;base64,' + base64

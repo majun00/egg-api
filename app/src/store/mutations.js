@@ -42,17 +42,17 @@ export default {
 
     //获取用户信息存入vuex
     [GET_USERINFO](state, info) {
-        // if (state.userInfo && (state.userInfo.username !== info.username)) {
-        //     return;
-        // };
-        // if (!state.login) {
-        //     return
-        // }
-        // if (!info.message) {
-        //     state.userInfo = { ...info };
-        // } else {
-        //     state.userInfo = null;
-        // }
+        if (state.userInfo && (state.userInfo.username !== info.username)) {
+            return;
+        };
+        if (!state.login) {
+            return
+        }
+        if (!info.message) {
+            state.userInfo = { ...info };
+        } else {
+            state.userInfo = null;
+        }
     },
 
     //退出登录
@@ -65,14 +65,14 @@ export default {
     [RETSET_NAME](state, username) {
         // state.userInfo = Object.assign({}, state.userInfo, { username })
     },
-    
+
     // 记录当前经度纬度
     [RECORD_ADDRESS](state, {
         latitude,
         longitude
     }) {
-        // state.latitude = latitude;
-        // state.longitude = longitude;
+        state.latitude = latitude;
+        state.longitude = longitude;
     },
 
     [RECORD_SHOPDETAIL](state, detail) {
@@ -183,7 +183,7 @@ export default {
 
     //保存geohash
     [SAVE_GEOHASH](state, geohash) {
-        // state.geohash = geohash;
+        state.geohash = geohash;
 
     },
 

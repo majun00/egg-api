@@ -38,11 +38,15 @@ module.exports = app => {
 
     router.post('/v1/addimg/:type', controller.upload.upload);
     router.get('/v1/cities', controller.v1.city.getCity)
+    router.get('/v1/cities/:id', controller.v1.city.getCityById)
     router.get('/v1/pois', controller.v1.search.search)
 
     // APP
     router.post('/v1/captchas', controller.v1.captchas.getCaptchas);
     router.post('/v2/login', controller.v2.user.login);
+    router.get('/v1/user', controller.v2.user.getInfo);
+    router.get('/v2/pois/:geohash', controller.v1.city.pois);
+    router.get('/v2/index_entry', controller.v2.entry.getEntry);
 
 
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)

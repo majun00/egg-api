@@ -101,8 +101,25 @@ class AddressService extends Service {
     }
 
     // 通过geohash获取精确位置
-    async getpois() {
-
+    async getpois(lat, lng) {
+        const ctx = this.ctx
+        try {
+            const res = (await ctx.curl('http://apis.map.qq.com/ws/geocoder/v1/', {
+                data: {
+                    key: tencentkey,
+                    location: lat + ',' + lng
+                },
+                dataType: 'json'
+            })).data
+            if (res.status == 0) {
+                return res
+            } else {
+                throw new Error('通过获geohash取具体位置失败');
+            }
+        } catch (err) {
+            console.log('getpois获取定位失败')
+            throw new Error(err);
+        }
     }
 }
 

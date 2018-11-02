@@ -58,6 +58,26 @@ class CityService extends Service {
     }
 
     async getCityById() {
+        const ctx = this.ctx
+        const cityid = ctx.params.id;
+
+        if (isNaN(cityid)) {
+            ctx.body = {
+                name: 'ERROR_PARAM_TYPE',
+                message: '参数错误',
+            }
+            return
+        }
+
+        try {
+            const cityInfo = await ctx.model.City.getCityById(cityid);
+            ctx.body = cityInfo
+        } catch (err) {
+            ctx.body = {
+                name: 'ERROR_DATA',
+                message: '获取数据失败',
+            }
+        }
 
     }
 
@@ -66,6 +86,43 @@ class CityService extends Service {
     }
 
     async pois() {
+        const ctx = this.ctx
+        const geohash = ctx.params.geohash;
+
+        try {
+            if (geohash.indexOf(',') == -1) {
+                throw new Error('参数错误')
+            }
+        } catch (err) {
+            console.log('参数错误');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: '参数错误',
+            }
+            return
+        }
+
+        const poisArr = geohash.split(',');
+        try {
+            const result = await ctx.service.address.getpois(poisArr[0], poisArr[1]);
+            const address = {
+                address: result.result.address,
+                city: result.result.address_component.province,
+                geohash,
+                latitude: poisArr[0],
+                longitude: poisArr[1],
+                name: result.result.formatted_addresses.recommend,
+            }
+            ctx.body = address
+        } catch (err) {
+            console.log('getpois返回信息失败');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_DATA',
+                message: '获取数据失败',
+            }
+        }
 
     }
 }
