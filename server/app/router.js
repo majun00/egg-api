@@ -45,8 +45,12 @@ module.exports = app => {
     router.post('/v1/captchas', controller.v1.captchas.getCaptchas);
     router.post('/v2/login', controller.v2.user.login);
     router.get('/v1/user', controller.v2.user.getInfo);
+
     router.get('/v2/pois/:geohash', controller.v1.city.pois);
     router.get('/v2/index_entry', controller.v2.entry.getEntry);
+
+    router.get('/shopping/v1/restaurants/delivery_modes', controller.shopping.category.getDelivery);
+    router.get('/shopping/v1/restaurants/activity_attributes', controller.shopping.category.getActivity);
 
 
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)

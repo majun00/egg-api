@@ -19,14 +19,14 @@ class FoodService extends Service {
         try {
             await this.ctx.model.Category.addCategory(type)
         } catch (err) {
-			console.log('增加category数量失败',err);
+            console.log('增加category数量失败', err);
         }
     }
 
     async findById(id) {
         try {
             const CateEntity = await this.ctx.model.Category.findOne({ 'sub_categories.id': id })
-            let categoName=CateEntity.name
+            let categoName = CateEntity.name
             CateEntity.sub_categories.forEach(item => {
                 if (item.id == id) {
                     categoName += '/' + item.name;
@@ -39,9 +39,35 @@ class FoodService extends Service {
         }
     }
 
-    async getDelivery() {}
+    async getDelivery() {
+        const ctx = this.ctx
+        try {
+            const deliveries = await ctx.model.Delivery.find({}, '-_id');
+            ctx.body = deliveries
+        } catch (err) {
+            console.log('获取配送方式数据失败');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_DATA',
+                message: '获取配送方式数据失败'
+            }
+        }
+    }
 
-    async getActivity() {}
+    async getActivity() {
+        const ctx = this.ctx
+        try {
+            const activities = await ctx.model.Activity.find({}, '-_id');
+            ctx.body = activities
+        } catch (err) {
+            console.log('获取活动数据失败');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_DATA',
+                message: '获取活动数据失败'
+            }
+        }
+    }
 }
 
 

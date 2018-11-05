@@ -36,19 +36,19 @@
 				</svg>
 				<span class="shop_header_title">附近商家</span>
 			</header>
-			<!-- <shop-list v-if="hasGetData" :geohash="geohash"></shop-list> -->
+			<shop-list v-if="hasGetData" :geohash="geohash"></shop-list>
 		</div>
-		
-		<!-- <foot-guide></foot-guide> -->
+
+		<foot-guide></foot-guide>
 	</div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-import {imgBaseUrl} from 'src/config/env'
+import { imgBaseUrl } from 'src/config/env'
 import headTop from '../../components/header/head'
-// import footGuide from '../../components/footer/footGuide'
-// import shopList from '../../components/common/shoplist'
+import footGuide from '../../components/footer/footGuide'
+import shopList from '../../components/common/shoplist'
 import { msiteAddress, msiteFoodTypes, cityGuess } from '../../service/getData'
 import '../../plugins/swiper.min.js'
 import '../../style/swiper.min.css'
@@ -67,10 +67,9 @@ export default {
 		if (!this.$route.query.geohash) {
 			const address = await cityGuess();
 			this.geohash = address.latitude + ',' + address.longitude;
-		}else{
+		} else {
 			this.geohash = this.$route.query.geohash
 		}
-
 		//保存geohash 到vuex
 		this.SAVE_GEOHASH(this.geohash);
 		//获取位置信息
@@ -83,25 +82,25 @@ export default {
 	mounted() {
 		//获取导航食品类型列表
 		msiteFoodTypes(this.geohash).then(res => {
-		// 	let resLength = res.length;
-		// 	let resArr = [...res]; // 返回一个新的数组
-		// 	let foodArr = [];
-		// 	for (let i = 0, j = 0; i < resLength; i += 8, j++) {
-		// 		foodArr[j] = resArr.splice(0, 8);
-		// 	}
-		// 	this.foodTypes = foodArr;
-		// }).then(() => {
-		// 	//初始化swiper
-		// 	new Swiper('.swiper-container', {
-		// 		pagination: '.swiper-pagination',
-		// 		loop: true
-		// 	});
+			let resLength = res.length;
+			let resArr = [...res]; // 返回一个新的数组
+			let foodArr = [];
+			for (let i = 0, j = 0; i < resLength; i += 8, j++) {
+				foodArr[j] = resArr.splice(0, 8);
+			}
+			this.foodTypes = foodArr;
+		}).then(() => {
+			//初始化swiper
+			new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				loop: true
+			});
 		})
 	},
 	components: {
 		headTop,
-		// shopList,
-		// footGuide,
+		shopList,
+		footGuide,
 	},
 	computed: {
 
@@ -112,12 +111,12 @@ export default {
 		]),
 		// 解码url地址，求去restaurant_category_id值
 		getCategoryId(url) {
-			// let urlData = decodeURIComponent(url.split('=')[1].replace('&target_name',''));
-			// if (/restaurant_category_id/gi.test(urlData)) {
-			// 	return JSON.parse(urlData).restaurant_category_id.id
-			// }else{
-			// 	return ''
-			// }
+			let urlData = decodeURIComponent(url.split('=')[1].replace('&target_name',''));
+			if (/restaurant_category_id/gi.test(urlData)) {
+				return JSON.parse(urlData).restaurant_category_id.id
+			}else{
+				return ''
+			}
 		}
 	},
 	watch: {

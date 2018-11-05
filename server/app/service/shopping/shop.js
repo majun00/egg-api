@@ -191,12 +191,18 @@ class ShopService extends Service {
             restaurant_category_id,
             order_by,
             extras,
-            delivery_mode = [],
-            support_ids = [],
-            restaurant_category_ids = [],
+            // delivery_mode = [],
+            // support_ids = [],
+            // restaurant_category_ids = [],
         } = ctx.query
 
-        console.log('[request]', JSON.stringify(ctx.query))
+        const queries = ctx.queries
+        const restaurant_category_ids = queries.restaurant_category_ids && queries.restaurant_category_ids[0] ? queries.restaurant_category_ids : []
+        const delivery_mode = queries.delivery_mode && queries.delivery_mode[0] ? queries.delivery_mode : []
+        const support_ids = queries.support_ids && queries.support_ids[0] ? queries.support_ids : []
+        // console.log('[queries]', restaurant_category_ids)
+        // console.log('[queries]', delivery_mode)
+        // console.log('[queries]', support_ids)
 
         try {
             if (!latitude) {
@@ -214,83 +220,87 @@ class ShopService extends Service {
 
         //获取对应食品种类
         let filter = {}
-        // if (restaurant_category_ids.length && Number(restaurant_category_ids[0])) {
-        //     const category = await ctx.service.shopping.category.findById(restaurant_category_ids[0]);
-        //     Object.assign(filter, { category })
-        // }
+        if (restaurant_category_ids.length && Number(restaurant_category_ids[0])) {
+            const category = await ctx.service.shopping.category.findById(restaurant_category_ids[0]);
+            Object.assign(filter, { category })
+        }
         // console.log('[filter]', JSON.stringify(filter))
 
         //按照距离，评分，销量等排序
         let sortBy = {};
-        // if (Number(order_by)) {
-        //     switch (Number(order_by)) {
-        //         case 1:
-        //             Object.assign(sortBy, { float_minimum_order_amount: 1 });
-        //             break;
-        //         case 2:
-        //             Object.assign(filter, { location: { $near: [longitude, latitude] } });
-        //             break;
-        //         case 3:
-        //             Object.assign(sortBy, { rating: -1 });
-        //             break;
-        //         case 5:
-        //             Object.assign(filter, { location: { $near: [longitude, latitude] } });
-        //             break;
-        //         case 6:
-        //             Object.assign(sortBy, { recent_order_num: -1 });
-        //             break;
-        //     }
-        // }
+        if (Number(order_by)) {
+            switch (Number(order_by)) {
+                case 1:
+                    Object.assign(sortBy, { float_minimum_order_amount: 1 });
+                    break;
+                case 2:
+                    Object.assign(filter, { location: { $near: [longitude, latitude] } });
+                    break;
+                case 3:
+                    Object.assign(sortBy, { rating: -1 });
+                    break;
+                case 5:
+                    Object.assign(filter, { location: { $near: [longitude, latitude] } });
+                    break;
+                case 6:
+                    Object.assign(sortBy, { recent_order_num: -1 });
+                    break;
+            }
+        }
+        // console.log('[sortBy]', JSON.stringify(sortBy))
+
 
         //查找配送方式
-        // if (delivery_mode.length) {
-        //     delivery_mode.forEach(item => {
-        //         if (Number(item)) {
-        //             Object.assign(filter, { 'delivery_mode.id': Number(item) })
-        //         }
-        //     })
-        // }
+        if (delivery_mode.length) {
+            delivery_mode.forEach(item => {
+                if (Number(item)) {
+                    Object.assign(filter, { 'delivery_mode.id': Number(item) })
+                }
+            })
+        }
+        // console.log('[delivery_mode]', JSON.stringify(filter))
 
         //查找活动支持方式
-        // if (support_ids.length) {
-        //     const filterArr = [];
-        //     support_ids.forEach(item => {
-        //         if (Number(item) && (Number(item) !== 8)) {
-        //             filterArr.push(Number(item))
-        //         } else if (Number(item) == 8) { //品牌保证特殊处理
-        //             Object.assign(filter, { is_premium: true })
-        //         }
-        //     })
-        //     if (filterArr.length) {
-        //         //匹配同时拥有多种活动的数据
-        //         Object.assign(filter, { 'supports.id': { $all: filterArr } })
-        //     }
-        // }
+        if (support_ids.length) {
+            const filterArr = [];
+            support_ids.forEach(item => {
+                if (Number(item) && (Number(item) !== 8)) {
+                    filterArr.push(Number(item))
+                } else if (Number(item) == 8) { //品牌保证特殊处理
+                    Object.assign(filter, { is_premium: true })
+                }
+            })
+            if (filterArr.length) {
+                //匹配同时拥有多种活动的数据
+                Object.assign(filter, { 'supports.id': { $all: filterArr } })
+            }
+        }
+        // console.log('[support_ids]', JSON.stringify(filter))
 
         const restaurants = await ctx.model.Shop.find(filter, '-_id').sort(sortBy).limit(Number(limit)).skip(Number(offset))
 
         //获取百度地图测局所需经度纬度
-        // const from = latitude + ',' + longitude;
-        // let to = '';
-        // restaurants.forEach((item, index) => {
-        //     const slpitStr = (index == restaurants.length - 1) ? '' : '|';
-        //     to += item.latitude + ',' + item.longitude + slpitStr;
-        // })
-        // try {
-        //     if (restaurants.length) {
-        //         //获取距离信息，并合并到数据中
-        //         const distance_duration = await this.getDistance(from, to)
-        //         restaurants.map((item, index) => {
-        //             return Object.assign(item, distance_duration[index])
-        //         })
-        //     }
-        // } catch (err) {
-        //     // 百度地图达到上限后会导致加载失败，需优化
-        //     console.log('从addressComoponent获取测距数据失败', err);
-        //     restaurants.map((item, index) => {
-        //         return Object.assign(item, { distance: '10公里', order_lead_time: '40分钟' })
-        //     })
-        // }
+        const from = latitude + ',' + longitude;
+        let to = '';
+        restaurants.forEach((item, index) => {
+            const slpitStr = (index == restaurants.length - 1) ? '' : '|';
+            to += item.latitude + ',' + item.longitude + slpitStr;
+        })
+        try {
+            if (restaurants.length) {
+                //获取距离信息，并合并到数据中
+                const distance_duration = await this.service.address.getDistance(from, to)
+                restaurants.map((item, index) => {
+                    return Object.assign(item, distance_duration[index])
+                })
+            }
+        } catch (err) {
+            // 百度地图达到上限后会导致加载失败，需优化
+            // console.log('从addressComoponent获取测距数据失败', err);
+            restaurants.map((item, index) => {
+                return Object.assign(item, { distance: '10公里', order_lead_time: '40分钟' })
+            })
+        }
 
         try {
             ctx.body = restaurants
