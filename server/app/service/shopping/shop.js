@@ -314,6 +314,51 @@ class ShopService extends Service {
     }
 
     async searchResaturant() {
+        const ctx = this.ctx
+        const { geohash, keyword } = ctx.query;
+
+        try {
+            if (!geohash || geohash.indexOf(',') == -1) {
+                throw new Error('经纬度参数错误');
+            } else if (!keyword) {
+                throw new Error('关键词参数错误');
+            }
+        } catch (err) {
+            console.log('搜索商铺参数错误');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: err.message,
+            }
+            return
+        }
+
+        try {
+            const restaurants = await ctx.model.Shop.find({ name: eval('/' + keyword + '/gi') }, '-_id').limit(50);
+            if (restaurants.length) {
+                const [latitude, longitude] = geohash.split(',');
+                const from = latitude + ',' + longitude;
+                let to = '';
+                //获取百度地图测局所需经度纬度
+                restaurants.forEach((item, index) => {
+                    const slpitStr = (index == restaurants.length - 1) ? '' : '|';
+                    to += item.latitude + ',' + item.longitude + slpitStr;
+                })
+                //获取距离信息，并合并到数据中
+                const distance_duration = await ctx.service.address.getDistance(from, to)
+                restaurants.map((item, index) => {
+                    return Object.assign(item, distance_duration[index])
+                })
+            }
+            ctx.body = restaurants
+        } catch (err) {
+            console.log('搜索餐馆数据失败');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_DATA',
+                message: '搜索餐馆数据失败'
+            }
+        }
 
     }
 

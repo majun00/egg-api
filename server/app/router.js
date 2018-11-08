@@ -65,6 +65,9 @@ module.exports = app => {
     router.get('/bos/v2/users/:user_id/orders', controller.v1.order.getOrders)
     router.get('/bos/v1/users/:user_id/orders/:order_id/snapshot', controller.v1.order.getDetail)
 
+    router.get('/v4/restaurants', controller.shopping.shop.searchResaturant);
+
+
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
     // router.resources('auth', '/v1/auth', controller.auth)
     // router.delete('/v1/auth', controller.auth.destroy)
