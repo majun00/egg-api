@@ -63,7 +63,7 @@ export default {
 
     //修改用户名
     [RETSET_NAME](state, username) {
-        // state.userInfo = Object.assign({}, state.userInfo, { username })
+        state.userInfo = Object.assign({}, state.userInfo, { username })
     },
 
     // 记录当前经度纬度
@@ -159,7 +159,7 @@ export default {
 
     //保存商铺id
     [SAVE_SHOPID](state, shopid) {
-        // state.shopid = shopid;
+        state.shopid = shopid;
     },
 
     //记录订单页面用户选择的备注, 传递给订单确认页面
@@ -167,18 +167,18 @@ export default {
         remarkText,
         inputText
     }) {
-        // state.remarkText = remarkText;
-        // state.inputText = inputText;
+        state.remarkText = remarkText;
+        state.inputText = inputText;
     },
 
     //是否开发票
     [CONFIRM_INVOICE](state, invoice) {
-        // state.invoice = invoice;
+        state.invoice = invoice;
     },
 
     //选择搜索的地址
     [CHOOSE_SEARCH_ADDRESS](state, place) {
-        // state.searchAddress = place;
+        state.searchAddress = place;
     },
 
     //保存geohash
@@ -189,7 +189,7 @@ export default {
 
     //确认订单页添加新的的地址
     [CONFIRM_ADDRESS](state, newAddress) {
-        // state.newAddress.push(newAddress);
+        state.newAddress.push(newAddress);
     },
 
     //选择的地址
@@ -197,13 +197,13 @@ export default {
         address,
         index
     }) {
-        // state.choosedAddress = address;
-        // state.addressIndex = index;
+        state.choosedAddress = address;
+        state.addressIndex = index;
     },
 
     //保存下单需要验证的返回值
     [NEED_VALIDATION](state, needValidation) {
-        // state.needValidation = needValidation;
+        state.needValidation = needValidation;
     },
 
     //保存下单后购物id 和 sig
@@ -211,8 +211,8 @@ export default {
         cart_id,
         sig
     }) {
-        // state.cart_id = cart_id;
-        // state.sig = sig;
+        state.cart_id = cart_id;
+        state.sig = sig;
     },
 
     //保存下单参数，用户验证页面调用
@@ -227,13 +227,13 @@ export default {
 
     //下单成功，保存订单返回信息
     [ORDER_SUCCESS](state, order) {
-        // state.cartPrice = null;
-        // state.orderMessage = order;
+        state.cartPrice = null;
+        state.orderMessage = order;
     },
 
     //进入订单详情页前保存该订单信息
     [SAVE_ORDER](state, orderDetail) {
-        // state.orderDetail = orderDetail;
+        state.orderDetail = orderDetail;
     },
 
     //保存图片

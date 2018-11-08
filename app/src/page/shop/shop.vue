@@ -356,7 +356,7 @@
       <p class="show_delete_tip" v-if="showDeleteTip">多规格商品只能去购物车删除哦</p>
     </transition>
 
-    <transition appear @after-appear='afterEnter' @before-appear="beforeEnter" v-for="(item,index) in showMoveDot">
+    <transition appear @after-appear='afterEnter' @before-appear="beforeEnter" v-for="(item,index) in showMoveDot" :key='index'>
       <span class="move_dot" v-if="item">
         <svg class="move_liner">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use>

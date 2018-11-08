@@ -56,6 +56,14 @@ module.exports = app => {
     router.get('/ugc/v2/restaurants/:restaurant_id/ratings/scores', controller.ugc.rating.getScores);
     router.get('/ugc/v2/restaurants/:restaurant_id/ratings/tags', controller.ugc.rating.getTags);
 
+    router.post('/v1/carts/checkout', controller.v1.carts.checkout);
+    router.get('/v1/users/:user_id/addresses', controller.v1.addre.getAddress);
+    router.post('/v1/users/:user_id/addresses', controller.v1.addre.addAddress);
+    router.get('/v1/carts/:cart_id/remarks', controller.v1.remark.getRemarks);
+    router.post('/v1/users/:user_id/carts/:cart_id/orders', controller.v1.order.postOrder);
+
+    router.get('/bos/v2/users/:user_id/orders', controller.v1.order.getOrders)
+    router.get('/bos/v1/users/:user_id/orders/:order_id/snapshot', controller.v1.order.getDetail)
 
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
     // router.resources('auth', '/v1/auth', controller.auth)
