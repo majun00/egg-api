@@ -4,7 +4,7 @@ const home = r => require.ensure([], () => r(require('../page/home/home')), 'hom
 const city = r => require.ensure([], () => r(require('../page/city/city')), 'city')
 const msite = r => require.ensure([], () => r(require('../page/msite/msite')), 'msite')
 const search = r => require.ensure([], () => r(require('../page/search/search')), 'search')
-// const shop = r => require.ensure([], () => r(require('../page/shop/shop')), 'shop')
+const shop = r => require.ensure([], () => r(require('../page/shop/shop')), 'shop')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile')
 // const forget = r => require.ensure([], () => r(require('../page/forget/forget')), 'forget')
@@ -15,7 +15,7 @@ const order = r => require.ensure([], () => r(require('../page/order/order')), '
 // const useCart = r => require.ensure([], () => r(require('../page/vipcard/children/useCart')), 'useCart')
 // const vipDescription = r => require.ensure([], () => r(require('../page/vipcard/children/vipDescription')), 'vipDescription')
 const food = r => require.ensure([], () => r(require('../page/food/food')), 'food')
-// const confirmOrder = r => require.ensure([], () => r(require('../page/confirmOrder/confirmOrder')), 'confirmOrder')
+const confirmOrder = r => require.ensure([], () => r(require('../page/confirmOrder/confirmOrder')), 'confirmOrder')
 // const remark = r => require.ensure([], () => r(require('../page/confirmOrder/children/remark')), 'remark')
 // const payment = r => require.ensure([], () => r(require('../page/confirmOrder/children/payment')), 'payment')
 // const userValidation = r => require.ensure([], () => r(require('../page/confirmOrder/children/userValidation')), 'userValidation')
@@ -23,9 +23,9 @@ const food = r => require.ensure([], () => r(require('../page/food/food')), 'foo
 // const chooseAddress = r => require.ensure([], () => r(require('../page/confirmOrder/children/chooseAddress')), 'chooseAddress')
 // const addAddress = r => require.ensure([], () => r(require('../page/confirmOrder/children/children/addAddress')), 'addAddress')
 // const searchAddress = r => require.ensure([], () => r(require('../page/confirmOrder/children/children/children/searchAddress')), 'searchAddress')
-// const foodDetail = r => require.ensure([], () => r(require('../page/shop/children/foodDetail')), 'foodDetail')
-// const shopDetail = r => require.ensure([], () => r(require('../page/shop/children/shopDetail')), 'shopDetail')
-// const shopSafe = r => require.ensure([], () => r(require('../page/shop/children/children/shopSafe')), 'shopSafe')
+const foodDetail = r => require.ensure([], () => r(require('../page/shop/children/foodDetail')), 'foodDetail')
+const shopDetail = r => require.ensure([], () => r(require('../page/shop/children/shopDetail')), 'shopDetail')
+const shopSafe = r => require.ensure([], () => r(require('../page/shop/children/children/shopSafe')), 'shopSafe')
 // const info = r => require.ensure([], () => r(require('../page/profile/children/info')), 'info')
 // const setusername = r => require.ensure([], () => r(require('../page/profile/children/children/setusername')), 'setusername')
 // const address = r => require.ensure([], () => r(require('../page/profile/children/children/address')), 'address')
@@ -84,26 +84,26 @@ export default [{
             path: '/search/:geohash',
             component: search
         },
-        // //商铺详情页
-        // {
-        //     path: '/shop',
-        //     component: shop,
-        //     children: [{
-        //         path: 'foodDetail', //食品详情页
-        //         component: foodDetail,
-        //     }, {
-        //         path: 'shopDetail', //商铺详情页
-        //         component: shopDetail,
-        //         children: [{
-        //             path: 'shopSafe', //商铺安全认证页
-        //             component: shopSafe,
-        //         }, ]
-        //     }]
-        // },
-        // //确认订单页
-        // {
-        //     path: '/confirmOrder',
-        //     component: confirmOrder,
+        //商铺详情页
+        {
+            path: '/shop',
+            component: shop,
+            children: [{
+                path: 'foodDetail', //食品详情页
+                component: foodDetail,
+            }, {
+                path: 'shopDetail', //商铺详情页
+                component: shopDetail,
+                children: [{
+                    path: 'shopSafe', //商铺安全认证页
+                    component: shopSafe,
+                }, ]
+            }]
+        },
+        //确认订单页
+        {
+            path: '/confirmOrder',
+            component: confirmOrder,
         //     children: [{
         //         path: 'remark', //订单备注
         //         component: remark,
@@ -128,8 +128,8 @@ export default [{
         //             }]
         //         }, ]
         //     }, ]
-        // },
-        // //登录注册页
+        },
+        //登录注册页
         {
             path: '/login',
             component: login

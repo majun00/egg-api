@@ -52,6 +52,10 @@ module.exports = app => {
     router.get('/shopping/v1/restaurants/delivery_modes', controller.shopping.category.getDelivery);
     router.get('/shopping/v1/restaurants/activity_attributes', controller.shopping.category.getActivity);
 
+    router.get('/ugc/v2/restaurants/:restaurant_id/ratings', controller.ugc.rating.getRatings);
+    router.get('/ugc/v2/restaurants/:restaurant_id/ratings/scores', controller.ugc.rating.getScores);
+    router.get('/ugc/v2/restaurants/:restaurant_id/ratings/tags', controller.ugc.rating.getTags);
+
 
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)
     // router.resources('auth', '/v1/auth', controller.auth)

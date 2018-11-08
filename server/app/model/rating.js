@@ -44,10 +44,11 @@ module.exports = app => {
             if (!data) {
                 const newRating = {
                     restaurant_id,
-                    rating: ratingData.ratingList,
+                    ratings: ratingData.ratingList,
                     scores: ratingData.scores,
                     tags: ratingData.tags
                 }
+                console.log('[newRating]',newRating)
                 await this.create(newRating)
                 return true
             } else {
@@ -60,7 +61,18 @@ module.exports = app => {
     }
 
     ratingSchema.statics.getData = async function(restaurant_id, type) {
+        try {
+            const data = await this.findOne({ restaurant_id }, '-_id');
 
+            if (!data) {
+                throw new Error('未找到当前餐馆的评论数据');
+            } else {
+                return data[type]
+            }
+        } catch (err) {
+            console.log('初始化评论数据失败');
+            throw new Error(err)
+        }
     }
 
 
