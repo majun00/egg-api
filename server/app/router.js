@@ -64,8 +64,17 @@ module.exports = app => {
 
     router.get('/bos/v2/users/:user_id/orders', controller.v1.order.getOrders)
     router.get('/bos/v1/users/:user_id/orders/:order_id/snapshot', controller.v1.order.getDetail)
-
     router.get('/v4/restaurants', controller.shopping.shop.searchResaturant);
+
+    router.get('/v2/signout', controller.v2.user.signout);
+    router.delete('/v1/users/:user_id/addresses/:address_id', controller.v1.addre.deleteAddress);
+    router.post('/member/v1/users/:user_id/delivery_card/physical_card/bind', controller.member.vipCart.useCart)
+    router.get('/v3/profile/explain', controller.v3.explain.getExpalin)
+
+    router.get('/promotion/v2/users/:user_id/hongbaos', controller.promotion.hongbao.getHongbao)
+    router.get('/promotion/v2/users/:user_id/expired_hongbaos', controller.promotion.hongbao.getExpiredHongbao)
+    router.post('/v1/users/:user_id/hongbao/exchange', controller.promotion.hongbao.exchange);
+
 
 
     // router.resources('teachers', '/v1/teachers', checkApiToken, controller.teachers)

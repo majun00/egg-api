@@ -243,27 +243,27 @@ export default {
 
     //删除地址列表
     [SAVE_ADDRESS](state, newAdress) {
-        // state.removeAddress = newAdress
+        state.removeAddress = newAdress
     },
 
     //添加地址name
     [SAVE_ADDDETAIL](state, addAddress) {
-        // state.addAddress = addAddress;
+        state.addAddress = addAddress;
     },
 
     //保存所选问题标题和详情
     [SAVE_QUESTION](state, question) {
-        // state.question = { ...question };
+        state.question = { ...question };
     },
 
     //增加地址
     [ADD_ADDRESS](state, obj) {
-        // state.removeAddress = [obj, ...state.removeAddress];
+        state.removeAddress = [obj, ...state.removeAddress];
     },
 
     //会员卡价格纪录
     [BUY_CART](state, price) {
-        // state.cartPrice = price;
+        state.cartPrice = price;
     },
 
 }

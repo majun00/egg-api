@@ -93,7 +93,32 @@ class AddreService extends Service {
 
     }
 
-    async deleteAddress() {}
+    async deleteAddress() {
+        const ctx = this.ctx
+        const { user_id, address_id } = ctx.params;
+
+        if (!user_id || !Number(user_id) || !address_id || !Number(address_id)) {
+            ctx.body = {
+                type: 'ERROR_PARAMS',
+                message: '参数错误',
+            }
+            return
+        }
+
+        try {
+            await ctx.model.Address.findOneAndRemove({ id: address_id });
+            ctx.body = {
+                status: 1,
+                success: '删除地址成功',
+            }
+        } catch (err) {
+            console.log('删除收获地址失败', err);
+            ctx.body = {
+                type: 'ERROR_DELETE_ADDRESS',
+                message: '删除收获地址失败'
+            }
+        }
+    }
 
     async getAddAddressById() {}
 

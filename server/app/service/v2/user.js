@@ -119,7 +119,14 @@ class UserService extends Service {
 
     async getInfoById() {}
 
-    async signout() {}
+    async signout() {
+        const ctx = this.ctx
+        delete ctx.session.user_id;
+        ctx.body = {
+            status: 1,
+            message: '退出成功'
+        }
+    }
 
     async chanegPassword() {}
 
