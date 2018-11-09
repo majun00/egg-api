@@ -57,7 +57,7 @@ export default {
 
     //退出登录
     [OUT_LOGIN](state) {
-        state.userInfo = {};
+        state.userInfo = null;
         state.login = false;
     },
 
@@ -217,12 +217,12 @@ export default {
 
     //保存下单参数，用户验证页面调用
     [SAVE_ORDER_PARAM](state, orderParam) {
-        // state.orderParam = orderParam;
+        state.orderParam = orderParam;
     },
 
     //修改下单参数
     [CHANGE_ORDER_PARAM](state, newParam) {
-        // state.orderParam = Object.assign({}, state.orderParam, newParam);
+        state.orderParam = Object.assign({}, state.orderParam, newParam);
     },
 
     //下单成功，保存订单返回信息
@@ -238,7 +238,7 @@ export default {
 
     //保存图片
     [SAVE_AVANDER](state, imgPath) {
-        // state.imgPath = imgPath;
+        state.imgPath = imgPath;
     },
 
     //删除地址列表
