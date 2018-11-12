@@ -7,7 +7,33 @@ class StatisService extends Service {
 
     async allApiRecord() {}
 
-    async userCount() {}
+    async userCount() {
+        const ctx = this.ctx
+        const date = ctx.params.date;
+        if (!date) {
+            console.log('参数错误')
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: '参数错误'
+            }
+            return
+        }
+        try {
+            const count = await ctx.model.UserInfo.find({ registe_time: eval('/^' + date + '/gi') }).count()
+            ctx.body = {
+                status: 1,
+                count,
+            }
+        } catch (err) {
+            console.log('获取当天注册人数失败');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_GET_USER_REGISTE_COUNT',
+                message: '获取当天注册人数失败'
+            }
+        }
+    }
 
     async adminCount() {
         const ctx = this.ctx
@@ -40,7 +66,35 @@ class StatisService extends Service {
 
     }
 
-    async orderCount() {}
+    async orderCount() {
+        const ctx = this.ctx
+        const date = ctx.params.date;
+
+        if (!date) {
+            console.log('参数错误')
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_PARAMS',
+                message: '参数错误'
+            }
+            return
+        }
+
+        try {
+            const count = await ctx.model.Order.find({ formatted_created_at: eval('/^' + date + '/gi') }).count()
+            ctx.body = {
+                status: 1,
+                count,
+            }
+        } catch (err) {
+            console.log('获取当天订单数量失败');
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_GET_ORDER_COUNT',
+                message: '获取当天订单数量失败'
+            }
+        }
+    }
 
 }
 

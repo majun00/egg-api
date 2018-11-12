@@ -186,7 +186,42 @@ class UserService extends Service {
 
     async updateAvatar() {}
 
-    async getUserCity() {}
+    async getUserCity() {
+        const ctx = this.ctx
+        const cityArr = ['北京', '上海', '深圳', '杭州'];
+        const filterArr = [];
+        let itemCity;
+
+        cityArr.forEach(async item => {
+            filterArr.push(await ctx.model.UserInfo.find({ city: item }).count())
+            // itemCity = await ctx.model.UserInfo.find({ city: item }).count()
+            // filterArr.push(itemCity)
+        })
+
+        filterArr.push(await ctx.model.UserInfo.$where('!"北京上海深圳杭州".includes(this.city)').count())
+        // const filterItem = await ctx.model.UserInfo.$where('!"北京上海深圳杭州".includes(this.city)').count()
+        // filterArr.push(filterItem)
+
+        Promise.all(filterArr).then(result => {
+            ctx.body = {
+                status: 1,
+                user_city: {
+                    beijing: result[0],
+                    shanghai: result[1],
+                    shenzhen: result[2],
+                    hangzhou: result[3],
+                    qita: result[4],
+                }
+            }
+        }).catch(err => {
+            console.log('获取用户分布城市数据失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_GET_USER_CITY',
+                message: '获取用户分布城市数据失败'
+            }
+        })
+    }
 
     encryption(password) {
         const newpassword = this.Md5(this.Md5(password).substr(2, 7) + this.Md5(password));
