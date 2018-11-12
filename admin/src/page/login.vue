@@ -3,7 +3,7 @@
         <transition name="form-fade" mode="in-out">
             <section class="form_contianer" v-show="showLogin">
                 <div class="manage_tip">
-                    <p>elm后台管理系统</p>
+                    <p>后台管理系统</p>
                 </div>
                 <el-form :model="loginForm" :rules="rules" ref="loginForm">
                     <el-form-item prop="username">

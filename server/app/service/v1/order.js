@@ -181,11 +181,60 @@ class OrderService extends Service {
     }
 
     async getAllOrders() {
+        const ctx = this.ctx
+        const { restaurant_id, limit = 20, offset = 0 } = ctx.query;
+        try {
+            let filter = {};
+            if (restaurant_id && Number(restaurant_id)) {
+                filter = { restaurant_id }
+            }
 
+            const orders = await ctx.model.Order.find(filter).sort({ id: -1 }).limit(Number(limit)).skip(Number(offset));
+
+            const timeNow = new Date().getTime();
+            orders.map(item => {
+                if (timeNow - item.order_time < 900000) {
+                    item.status_bar.title = '等待支付';
+                } else {
+                    item.status_bar.title = '支付超时';
+                }
+                item.time_pass = Math.ceil((timeNow - item.order_time) / 1000);
+                item.save()
+                return item
+            })
+            ctx.body = orders
+        } catch (err) {
+            console.log('获取订单数据失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'GET_ORDER_DATA_ERROR',
+                message: '获取订单数据失败'
+            }
+        }
     }
 
     async getOrdersCount() {
+        const ctx = this.ctx
+        const restaurant_id = ctx.query.restaurant_id;
+        try {
+            let filter = {};
+            if (restaurant_id && Number(restaurant_id)) {
+                filter = { restaurant_id }
+            }
 
+            const count = await ctx.model.Order.find(filter).count();
+            ctx.body = {
+                status: 1,
+                count,
+            }
+        } catch (err) {
+            console.log('获取订单数量失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_TO_GET_COUNT',
+                message: '获取订单数量失败'
+            }
+        }
     }
 
 }

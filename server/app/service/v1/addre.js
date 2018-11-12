@@ -120,7 +120,27 @@ class AddreService extends Service {
         }
     }
 
-    async getAddAddressById() {}
+    async getAddAddressById() {
+        const ctx = this.ctx
+        const address_id = ctx.params.address_id;
+        if (!address_id || !Number(address_id)) {
+            ctx.body = {
+                type: 'ERROR_PARAMS',
+                message: '参数错误',
+            }
+            return
+        }
+        try {
+            const address = await ctx.model.Address.findOne({ id: address_id });
+            ctx.body = address
+        } catch (err) {
+            console.log('获取地址信息失败', err);
+            ctx.body = {
+                type: 'ERROR_GET_ADDRESS',
+                message: '获取地址信息失败'
+            }
+        }
+    }
 
 }
 

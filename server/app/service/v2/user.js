@@ -83,9 +83,6 @@ class UserService extends Service {
                 message: '登陆失败',
             }
         }
-
-
-
     }
 
     async getInfo() {
@@ -117,7 +114,30 @@ class UserService extends Service {
         }
     }
 
-    async getInfoById() {}
+    async getInfoById() {
+        const ctx = this.ctx
+        const user_id = ctx.params.user_id;
+        if (!user_id || !Number(user_id)) {
+            console.log('通过ID获取用户信息失败')
+            ctx.body = {
+                status: 0,
+                type: 'GET_USER_INFO_FAIELD',
+                message: '通过用户ID获取用户信息失败',
+            }
+            return
+        }
+        try {
+            const userinfo = await ctx.model.UserInfo.findOne({ user_id }, '-_id');
+            ctx.body = userinfo
+        } catch (err) {
+            console.log('通过用户ID获取用户信息失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'GET_USER_INFO_FAIELD',
+                message: '通过用户ID获取用户信息失败',
+            }
+        }
+    }
 
     async signout() {
         const ctx = this.ctx
@@ -130,9 +150,39 @@ class UserService extends Service {
 
     async chanegPassword() {}
 
-    async getUserList() {}
+    async getUserList() {
+        const ctx = this.ctx
+        const { limit = 20, offset = 0 } = ctx.query;
+        try {
+            const users = await ctx.model.UserInfo.find({}, '-_id').sort({ user_id: -1 }).limit(Number(limit)).skip(Number(offset));
+            ctx.body = users
+        } catch (err) {
+            console.log('获取用户列表数据失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'GET_DATA_ERROR',
+                message: '获取用户列表数据失败'
+            }
+        }
+    }
 
-    async getUserCount() {}
+    async getUserCount() {
+        const ctx = this.ctx
+        try {
+            const count = await ctx.model.UserInfo.count();
+            ctx.body = {
+                status: 1,
+                count,
+            }
+        } catch (err) {
+            console.log('获取用户数量失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_TO_GET_USER_COUNT',
+                message: '获取用户数量失败'
+            }
+        }
+    }
 
     async updateAvatar() {}
 

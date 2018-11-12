@@ -186,7 +186,38 @@ class AdminService extends Service {
 
     async register() {}
 
-    async updateAvatar() {}
+    async updateAvatar() {
+        const ctx = this.ctx
+        const admin_id = ctx.params.admin_id;
+        
+        if (!admin_id || !Number(admin_id)) {
+            console.log('admin_id参数错误', admin_id)
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_ADMINID',
+                message: 'admin_id参数错误',
+            }
+            return
+        }
+
+        try {
+            const image_path = await ctx.service.upload.getPath(ctx);
+            await ctx.model.Admin.findOneAndUpdate({ id: admin_id }, { $set: { avatar: image_path } });
+            ctx.body = {
+                status: 1,
+                image_path,
+            }
+            return
+        } catch (err) {
+            console.log('上传图片失败', err);
+            ctx.body = {
+                status: 0,
+                type: 'ERROR_UPLOAD_IMG',
+                message: '上传图片失败'
+            }
+            return
+        }
+    }
 
 }
 
