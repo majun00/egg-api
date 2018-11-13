@@ -26,16 +26,22 @@ module.exports = appInfo => {
     }
 
     config.cors = {
-        origin: '*',
-        allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+        origin: 'http://47.110.44.176',
+        allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+        credentials: true
     }
-    
+
     config.multipart = {
         mode: 'file',
     };
 
     config.static = {
-        
+
+    };
+
+    config.alinode = {
+        appid: '76897',
+        secret: 'b132d850c600c635c20f45d39fca78c3b1a2a30f',
     };
 
     return config;

@@ -17,8 +17,8 @@ if (process.env.NODE_ENV == 'development') {
     imgBaseUrl = 'http://127.0.0.1:7001/public/temp/';
 
 } else if (process.env.NODE_ENV == 'production') {
-    baseUrl = '//elm.cangdu.org';
-    imgBaseUrl = '//elm.cangdu.org/img/';
+    baseUrl = '//47.110.44.176:7001';
+    imgBaseUrl = '//47.110.44.176:7001/img/';
 }
 
 export {
