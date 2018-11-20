@@ -24,11 +24,11 @@ open http://localhost:7001/
 
 #### 请求URL:  
 ```
-https://47.110.44.176:7001/v1/cities
+http://47.110.44.176:7001/v1/cities
 ```
 
 #### 示例：
- [https://47.110.44.176:7001/v1/cities?type=guess](https://47.110.44.176:7001/v1/cities?type=guess)
+ [http://47.110.44.176:7001/v1/cities?type=guess](http://47.110.44.176:7001/v1/cities?type=guess)
 
 #### 请求方式: 
 ```
@@ -61,11 +61,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/cities/:id
+http://47.110.44.176:7001/v1/cities/:id
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v1/cities/1](https://47.110.44.176:7001/v1/cities/1)
+[http://47.110.44.176:7001/v1/cities/1](http://47.110.44.176:7001/v1/cities/1)
 
 #### 请求方式：
 ```
@@ -97,11 +97,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/pois
+http://47.110.44.176:7001/v1/pois
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v1/pois?city_id=1&keyword=迪士尼&type=search](https://47.110.44.176:7001/v1/pois?city_id=1&keyword=%E8%BF%AA%E5%A3%AB%E5%B0%BC&type=search)
+[http://47.110.44.176:7001/v1/pois?city_id=1&keyword=迪士尼&type=search](http://47.110.44.176:7001/v1/pois?city_id=1&keyword=%E8%BF%AA%E5%A3%AB%E5%B0%BC&type=search)
 
 #### 请求方式：
 ```
@@ -142,11 +142,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v2/pois/:geohash
+http://47.110.44.176:7001/v2/pois/:geohash
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v2/pois/31.22967,121.4762](https://47.110.44.176:7001/v2/pois/31.22967,121.4762)
+[http://47.110.44.176:7001/v2/pois/31.22967,121.4762](http://47.110.44.176:7001/v2/pois/31.22967,121.4762)
 
 #### 请求方式：
 ```
@@ -176,11 +176,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v2/index_entry
+http://47.110.44.176:7001/v2/index_entry
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v2/index_entry](https://47.110.44.176:7001/v2/index_entry)
+[http://47.110.44.176:7001/v2/index_entry](http://47.110.44.176:7001/v2/index_entry)
 
 #### 请求方式：
 ```
@@ -226,11 +226,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/restaurants
+http://47.110.44.176:7001/shopping/restaurants
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/restaurants?latitude=31.22967&longitude=121.4762](https://47.110.44.176:7001/shopping/restaurants?latitude=31.22967&longitude=121.4762)
+[http://47.110.44.176:7001/shopping/restaurants?latitude=31.22967&longitude=121.4762](http://47.110.44.176:7001/shopping/restaurants?latitude=31.22967&longitude=121.4762)
 
 #### 请求方式：
 ```
@@ -363,11 +363,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v4/restaurants
+http://47.110.44.176:7001/v4/restaurants
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基](https://47.110.44.176:7001/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基)
+[http://47.110.44.176:7001/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基](http://47.110.44.176:7001/v4/restaurants?geohash=31.22967,121.4762&keyword=肯德基)
 
 #### 请求方式：
 ```
@@ -492,11 +492,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/restaurant/category
+http://47.110.44.176:7001/shopping/v2/restaurant/category
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/v2/restaurant/category](https://47.110.44.176:7001/shopping/v2/restaurant/category)
+[http://47.110.44.176:7001/shopping/v2/restaurant/category](http://47.110.44.176:7001/shopping/v2/restaurant/category)
 
 #### 请求方式：
 ```
@@ -564,11 +564,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v1/restaurants/delivery_modes
+http://47.110.44.176:7001/shopping/v1/restaurants/delivery_modes
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/v1/restaurants/delivery_modes](https://47.110.44.176:7001/shopping/v1/restaurants/delivery_modes)
+[http://47.110.44.176:7001/shopping/v1/restaurants/delivery_modes](http://47.110.44.176:7001/shopping/v1/restaurants/delivery_modes)
 
 #### 请求方式：
 ```
@@ -600,11 +600,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v1/restaurants/activity_attributes
+http://47.110.44.176:7001/shopping/v1/restaurants/activity_attributes
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/v1/restaurants/activity_attributes](https://47.110.44.176:7001/shopping/v1/restaurants/activity_attributes)
+[http://47.110.44.176:7001/shopping/v1/restaurants/activity_attributes](http://47.110.44.176:7001/shopping/v1/restaurants/activity_attributes)
 
 #### 请求方式：
 ```
@@ -640,11 +640,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/restaurant/:shopid
+http://47.110.44.176:7001/shopping/restaurant/:shopid
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/restaurant/1](https://47.110.44.176:7001/shopping/restaurant/1)
+[http://47.110.44.176:7001/shopping/restaurant/1](http://47.110.44.176:7001/shopping/restaurant/1)
 
 #### 请求方式：
 ```
@@ -766,7 +766,7 @@ GET
 
 #### 请求URL:  
 ```
-https://47.110.44.176:7001/v1/addimg/:type
+http://47.110.44.176:7001/v1/addimg/:type
 ```
 
 #### 示例：
@@ -797,7 +797,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/addshop
+http://47.110.44.176:7001/shopping/addshop
 ```
 
 #### 示例：
@@ -849,7 +849,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/addcategory
+http://47.110.44.176:7001/shopping/addcategory
 ```
 
 #### 示例：
@@ -881,7 +881,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/addfood
+http://47.110.44.176:7001/shopping/addfood
 ```
 
 #### 示例：
@@ -918,12 +918,12 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/menu
+http://47.110.44.176:7001/shopping/v2/menu
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/shopping/v2/menu?restaurant_id=1](https://47.110.44.176:7001/shopping/v2/menu?restaurant_id=1)
+[http://47.110.44.176:7001/shopping/v2/menu?restaurant_id=1](http://47.110.44.176:7001/shopping/v2/menu?restaurant_id=1)
 
 
 #### 请求方式：
@@ -1022,12 +1022,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/ugc/v2/restaurants/:restaurant_id/ratings
+http://47.110.44.176:7001/ugc/v2/restaurants/:restaurant_id/ratings
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/ugc/v2/restaurants/1/ratings?offset=0&limit=10](https://47.110.44.176:7001/ugc/v2/restaurants/1/ratings?offset=0&limit=10)
+[http://47.110.44.176:7001/ugc/v2/restaurants/1/ratings?offset=0&limit=10](http://47.110.44.176:7001/ugc/v2/restaurants/1/ratings?offset=0&limit=10)
 
 
 #### 请求方式：
@@ -1084,12 +1084,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/ugc/v2/restaurants/:restaurant_id/ratings/scores
+http://47.110.44.176:7001/ugc/v2/restaurants/:restaurant_id/ratings/scores
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/scores](https://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/scores)
+[http://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/scores](http://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/scores)
 
 
 #### 请求方式：
@@ -1123,12 +1123,12 @@ service_score: 4.69295
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/ugc/v2/restaurants/:restaurant_id/ratings/tags
+http://47.110.44.176:7001/ugc/v2/restaurants/:restaurant_id/ratings/tags
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/tags](https://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/tags)
+[http://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/tags](http://47.110.44.176:7001/ugc/v2/restaurants/1/ratings/tags)
 
 
 #### 请求方式：
@@ -1162,7 +1162,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/carts/checkout
+http://47.110.44.176:7001/v1/carts/checkout
 ```
 
 #### 示例：
@@ -1236,12 +1236,12 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/carts/:cart_id/remarks
+http://47.110.44.176:7001/v1/carts/:cart_id/remarks
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/v1/carts/1/remarks](https://47.110.44.176:7001/v1/carts/1/remarks)
+[http://47.110.44.176:7001/v1/carts/1/remarks](http://47.110.44.176:7001/v1/carts/1/remarks)
 
 
 #### 请求方式：
@@ -1277,12 +1277,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/:user_id/addresses
+http://47.110.44.176:7001/v1/users/:user_id/addresses
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/v1/users/1/addresses](https://47.110.44.176:7001/v1/users/1/addresses)
+[http://47.110.44.176:7001/v1/users/1/addresses](http://47.110.44.176:7001/v1/users/1/addresses)
 
 
 #### 请求方式：
@@ -1329,7 +1329,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/captchas
+http://47.110.44.176:7001/v1/captchas
 ```
 
 #### 示例：
@@ -1361,7 +1361,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/user
+http://47.110.44.176:7001/v1/user
 ```
 
 #### 示例：
@@ -1407,7 +1407,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v2/login
+http://47.110.44.176:7001/v2/login
 ```
 
 #### 示例：
@@ -1457,7 +1457,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v2/signout
+http://47.110.44.176:7001/v2/signout
 ```
 
 #### 示例：
@@ -1489,7 +1489,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v2/changepassword
+http://47.110.44.176:7001/v2/changepassword
 ```
 
 #### 示例：
@@ -1525,7 +1525,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/:user_id/addresses
+http://47.110.44.176:7001/v1/users/:user_id/addresses
 ```
 
 #### 示例：
@@ -1568,7 +1568,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/:user_id/addresses/:address_id
+http://47.110.44.176:7001/v1/users/:user_id/addresses/:address_id
 ```
 
 #### 示例：
@@ -1601,7 +1601,7 @@ DELETE
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/:user_id/carts/:cart_id/orders
+http://47.110.44.176:7001/v1/users/:user_id/carts/:cart_id/orders
 ```
 
 #### 示例：
@@ -1642,12 +1642,12 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/bos/v2/users/:user_id/orders
+http://47.110.44.176:7001/bos/v2/users/:user_id/orders
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/bos/v2/users/1/orders?limit=10&offset=0](https://47.110.44.176:7001/bos/v2/users/1/orders?limit=10&offset=0)
+[http://47.110.44.176:7001/bos/v2/users/1/orders?limit=10&offset=0](http://47.110.44.176:7001/bos/v2/users/1/orders?limit=10&offset=0)
 
 
 #### 请求方式：
@@ -1749,12 +1749,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/bos/v1/users/:user_id/orders/:order_id/snapshot
+http://47.110.44.176:7001/bos/v1/users/:user_id/orders/:order_id/snapshot
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/bos/v1/users/1/orders/1/snapshot](https://47.110.44.176:7001/bos/v1/users/1/orders/1/snapshot)
+[http://47.110.44.176:7001/bos/v1/users/1/orders/1/snapshot](http://47.110.44.176:7001/bos/v1/users/1/orders/1/snapshot)
 
 
 #### 请求方式：
@@ -1871,12 +1871,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v3/profile/explain
+http://47.110.44.176:7001/v3/profile/explain
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/v3/profile/explain](https://47.110.44.176:7001/v3/profile/explain)
+[http://47.110.44.176:7001/v3/profile/explain](http://47.110.44.176:7001/v3/profile/explain)
 
 
 #### 请求方式：
@@ -1903,12 +1903,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/promotion/v2/users/:user_id/hongbaos
+http://47.110.44.176:7001/promotion/v2/users/:user_id/hongbaos
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/promotion/v2/users/1/hongbaos?limit=20&offset=0](https://47.110.44.176:7001/promotion/v2/users/1/hongbaos?limit=20&offset=0)
+[http://47.110.44.176:7001/promotion/v2/users/1/hongbaos?limit=20&offset=0](http://47.110.44.176:7001/promotion/v2/users/1/hongbaos?limit=20&offset=0)
 
 
 #### 请求方式：
@@ -1960,12 +1960,12 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/promotion/v2/users/:user_id/expired_hongbaos
+http://47.110.44.176:7001/promotion/v2/users/:user_id/expired_hongbaos
 ```
 
 #### 示例：
 
-[https://47.110.44.176:7001/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0](https://47.110.44.176:7001/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0)
+[http://47.110.44.176:7001/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0](http://47.110.44.176:7001/promotion/v2/users/1/expired_hongbaos?limit=20&offset=0)
 
 
 #### 请求方式：
@@ -2018,7 +2018,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/:user_id/hongbao/exchange
+http://47.110.44.176:7001/v1/users/:user_id/hongbao/exchange
 ```
 
 #### 示例：
@@ -2053,7 +2053,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/admin/login
+http://47.110.44.176:7001/admin/login
 ```
 
 #### 示例：
@@ -2087,7 +2087,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/admin/singout
+http://47.110.44.176:7001/admin/singout
 ```
 
 #### 示例：
@@ -2121,7 +2121,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/admin/info
+http://47.110.44.176:7001/admin/info
 ```
 
 #### 示例：
@@ -2161,11 +2161,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/statis/api/:date/count
+http://47.110.44.176:7001/statis/api/:date/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/statis/api/2017-05-29/count](https://47.110.44.176:7001/statis/api/2017-05-29/count)
+[http://47.110.44.176:7001/statis/api/2017-05-29/count](http://47.110.44.176:7001/statis/api/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2196,11 +2196,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/statis/api/count
+http://47.110.44.176:7001/statis/api/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/statis/api/count](https://47.110.44.176:7001/statis/api/count)
+[http://47.110.44.176:7001/statis/api/count](http://47.110.44.176:7001/statis/api/count)
 
 #### 请求方式：
 ```
@@ -2230,11 +2230,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/statis/user/:date/count
+http://47.110.44.176:7001/statis/user/:date/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/statis/user/2017-05-29/count](https://47.110.44.176:7001/statis/user/2017-05-29/count)
+[http://47.110.44.176:7001/statis/user/2017-05-29/count](http://47.110.44.176:7001/statis/user/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2265,11 +2265,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/count
+http://47.110.44.176:7001/v1/users/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v1/users/count](https://47.110.44.176:7001/v1/users/count)
+[http://47.110.44.176:7001/v1/users/count](http://47.110.44.176:7001/v1/users/count)
 
 #### 请求方式：
 ```
@@ -2300,11 +2300,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/statis/order/:date/count
+http://47.110.44.176:7001/statis/order/:date/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/statis/order/2017-05-29/count](https://47.110.44.176:7001/statis/order/2017-05-29/count)
+[http://47.110.44.176:7001/statis/order/2017-05-29/count](http://47.110.44.176:7001/statis/order/2017-05-29/count)
 
 #### 请求方式：
 ```
@@ -2334,11 +2334,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/bos/orders/count
+http://47.110.44.176:7001/bos/orders/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/bos/orders/count](https://47.110.44.176:7001/bos/orders/count)
+[http://47.110.44.176:7001/bos/orders/count](http://47.110.44.176:7001/bos/orders/count)
 
 
 #### 请求方式：
@@ -2369,11 +2369,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/admin/all
+http://47.110.44.176:7001/admin/all
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/admin/all?offset=0&limit=20](https://47.110.44.176:7001/admin/all?offset=0&limit=20)
+[http://47.110.44.176:7001/admin/all?offset=0&limit=20](http://47.110.44.176:7001/admin/all?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -2417,11 +2417,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/admin/count
+http://47.110.44.176:7001/admin/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/admin/count](https://47.110.44.176:7001/admin/count)
+[http://47.110.44.176:7001/admin/count](http://47.110.44.176:7001/admin/count)
 
 
 #### 请求方式：
@@ -2452,11 +2452,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/getcategory/:restaurant_id
+http://47.110.44.176:7001/shopping/getcategory/:restaurant_id
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/getcategory/2](https://47.110.44.176:7001/shopping/getcategory/2)
+[http://47.110.44.176:7001/shopping/getcategory/2](http://47.110.44.176:7001/shopping/getcategory/2)
 
 
 #### 请求方式：
@@ -2498,11 +2498,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/restaurants/count
+http://47.110.44.176:7001/shopping/restaurants/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/restaurants/count](https://47.110.44.176:7001/shopping/restaurants/count)
+[http://47.110.44.176:7001/shopping/restaurants/count](http://47.110.44.176:7001/shopping/restaurants/count)
 
 
 #### 请求方式：
@@ -2536,7 +2536,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/updateshop
+http://47.110.44.176:7001/shopping/updateshop
 ```
 
 #### 示例：
@@ -2576,7 +2576,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/restaurant/:restaurant_id
+http://47.110.44.176:7001/shopping/restaurant/:restaurant_id
 ```
 
 #### 示例：
@@ -2613,11 +2613,11 @@ DELETE
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/foods
+http://47.110.44.176:7001/shopping/v2/foods
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/v2/foods?offset=0&limit=20&restaurant_id=2](https://47.110.44.176:7001/shopping/v2/foods?offset=0&limit=20&restaurant_id=2)
+[http://47.110.44.176:7001/shopping/v2/foods?offset=0&limit=20&restaurant_id=2](http://47.110.44.176:7001/shopping/v2/foods?offset=0&limit=20&restaurant_id=2)
 
 #### 请求方式：
 ```
@@ -2704,11 +2704,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/foods/count
+http://47.110.44.176:7001/shopping/v2/foods/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/v2/foods/count](https://47.110.44.176:7001/shopping/v2/foods/count)
+[http://47.110.44.176:7001/shopping/v2/foods/count](http://47.110.44.176:7001/shopping/v2/foods/count)
 
 
 #### 请求方式：
@@ -2740,11 +2740,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/menu/:category_id
+http://47.110.44.176:7001/shopping/v2/menu/:category_id
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/shopping/v2/menu/1](https://47.110.44.176:7001/shopping/v2/menu/1)
+[http://47.110.44.176:7001/shopping/v2/menu/1](http://47.110.44.176:7001/shopping/v2/menu/1)
 
 
 #### 请求方式：
@@ -2783,7 +2783,7 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/updatefood
+http://47.110.44.176:7001/shopping/v2/updatefood
 ```
 
 #### 示例：
@@ -2822,7 +2822,7 @@ POST
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/shopping/v2/food/:food_id
+http://47.110.44.176:7001/shopping/v2/food/:food_id
 ```
 
 #### 示例：
@@ -2858,11 +2858,11 @@ DELETE
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/users/list
+http://47.110.44.176:7001/v1/users/list
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v1/users/list?offset=0&limit=20](https://47.110.44.176:7001/v1/users/list?offset=0&limit=20)
+[http://47.110.44.176:7001/v1/users/list?offset=0&limit=20](http://47.110.44.176:7001/v1/users/list?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -2889,7 +2889,7 @@ GET
     registe_time: "2017-05-29 21:46",
     column_desc: {
       gift_mall_desc: "0元好物在这里",
-      game_link: "https://gamecenter.faas.ele.me",
+      game_link: "http://gamecenter.faas.ele.me",
       game_is_show: 1,
       game_image_hash: "05f108ca4e0c543488799f0c7c708cb1jpeg",
       game_desc: "玩游戏领红包"
@@ -2919,11 +2919,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/bos/orders
+http://47.110.44.176:7001/bos/orders
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/bos/orders?offset=0&limit=20](https://47.110.44.176:7001/bos/orders?offset=0&limit=20)
+[http://47.110.44.176:7001/bos/orders?offset=0&limit=20](http://47.110.44.176:7001/bos/orders?offset=0&limit=20)
 
 #### 请求方式：
 ```
@@ -2953,11 +2953,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/addresse/:address_id
+http://47.110.44.176:7001/v1/addresse/:address_id
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v1/addresse/1](https://47.110.44.176:7001/v1/addresse/1)
+[http://47.110.44.176:7001/v1/addresse/1](http://47.110.44.176:7001/v1/addresse/1)
 
 #### 请求方式：
 ```
@@ -2985,11 +2985,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/v1/user/city/count
+http://47.110.44.176:7001/v1/user/city/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/v1/user/city/count](https://47.110.44.176:7001/v1/user/city/count)
+[http://47.110.44.176:7001/v1/user/city/count](http://47.110.44.176:7001/v1/user/city/count)
 
 #### 请求方式：
 ```
@@ -3023,11 +3023,11 @@ GET
 
 #### 请求URL：
 ```
-https://47.110.44.176:7001/statis/admin/:date/count
+http://47.110.44.176:7001/statis/admin/:date/count
 ```
 
 #### 示例：
-[https://47.110.44.176:7001/statis/admin/2017-05-30/count](https://47.110.44.176:7001/statis/admin/2017-05-30/count)
+[http://47.110.44.176:7001/statis/admin/2017-05-30/count](http://47.110.44.176:7001/statis/admin/2017-05-30/count)
 
 #### 请求方式：
 ```
