@@ -4,6 +4,8 @@
 
 ## [管理后台传送门](https://github.com/majun00/elm-admin)
 
+## [部署项目到服务器](https://github.com/majun00/egg-api/blob/master/server.md)
+
 ## [Egg官方文档](https://eggjs.org/zh-cn/intro/quickstart.html)
 
 ## 项目运行
