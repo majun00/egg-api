@@ -1,6 +1,6 @@
 # 服务器部署前端&node 项目(包括阿里云服务器、nginx 以及 mongoDB 的配置)
 
-> 正式开始前，建议不熟悉 linux 命令的小伙伴同时打开我的另一篇博客[linux 常用操作](https://www.jianshu.com/p/0c6242c61c16)
+> 建议不熟悉 linux 命令的小伙伴同时打开我的另一篇博客[linux 常用操作](https://www.jianshu.com/p/0c6242c61c16)
 
 ## 服务器购买&配置
 
