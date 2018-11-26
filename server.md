@@ -191,18 +191,55 @@
    # cd server
    # tar -zxvf file_name.tgz . 解压
    # cnpm install --production 安装生产环境依赖
-   # npm start 运行(这里egg框架提供了egg-scripts启动进程，其他node项目请自行查找使用pm2启动)
+
+   koa项目(express项目类似)
+   # cnpm i -g pm2 下载pm2
+   # pm2 start bin/www 守护进程启动
+   # pm2 restart app_name|app_id 重启
+   # pm2 stop app_name|app_id 停止
+
+   egg项目
+   # npm start 运行
+   # npm stop 停止
+
    ```
 
 3. 阿里 node 性能平台监控
+
+   koa 项目(express 项目类似)
+
+   ```
+   # wget -O- https://raw.githubusercontent.com/aliyun-node/tnvm/master/install.sh | bash 安装版本管理工具 tnvm
+   # source ~/.bashrc
+   # tnvm ls-remote alinode 查看需要的版本
+   # tnvm install alinode-v3.11.4 安装需要的版本
+   # tnvm use alinode-v3.11. 使用需要的版本
+   ```
+
+   新建 config.json 文件如下，从[node 性能平台](https://node.console.aliyun.com/#!/owned)获取对应的接入参数
+
+   ```
+   {
+    "appid": "<YOUR APPID>",
+    "secret": "<YOUR SECRET>"
+    }
+   ```
+
+   ```
+   # cnpm install @alicloud/agenthub -g 安装 agenthub
+   # agenthub start config.json 启动agenthub
+   # agenthub list 查看 agenthub 列表
+   # ENABLE_NODE_LOG=YES pm2 start bin/www 使用pm2管理的应用
+   ```
+
+   egg 项目
 
    ```
    # cnpm i nodeinstall -g
    # nodeinstall --install-alinode ^3
    # cnpm i egg-alinode --save
+   # npm start
    ```
-
-   修改代码(这里是 egg 项目才有，其他 node 项目参考[阿里云官方文档](https://help.aliyun.com/document_detail/60338.html?spm=a2c4g.11174283.3.1.53f630b1oDUWak))
 
    ```
    // config/plugin.js
@@ -213,7 +250,6 @@
 
    // config/config.default.js
    config.alinode = {
-     // 从 `Node.js 性能平台` 获取对应的接入参数
      appid: '<YOUR_APPID>',
      secret: '<YOUR_SECRET>',
    };
@@ -227,4 +263,4 @@
 
 [全栈项目-基于 koa 框架 egg 的服务端接口](https://github.com/majun00/egg-api) 求一个 star~
 
-> 本人水平有限，欢迎大家交流指正。本文为作者原创，转载请注明出处。如果有帮到您，请给我一个 star~
+> 本人水平有限，欢迎大家交流指正。本文为作者原创，转载请注明出处。
