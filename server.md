@@ -192,13 +192,13 @@
    # tar -zxvf file_name.tgz . 解压
    # cnpm install --production 安装生产环境依赖
 
-   koa项目(express项目类似)
+   1. koa项目(express项目类似)
    # cnpm i -g pm2 下载pm2
    # pm2 start bin/www 守护进程启动
    # pm2 restart app_name|app_id 重启
    # pm2 stop app_name|app_id 停止
 
-   egg项目
+   2. egg项目
    # npm start 运行
    # npm stop 停止
 
@@ -206,7 +206,7 @@
 
 3. 阿里 node 性能平台监控
 
-   koa 项目(express 项目类似)
+   1. koa 项目(express 项目类似)
 
    ```
    # wget -O- https://raw.githubusercontent.com/aliyun-node/tnvm/master/install.sh | bash 安装版本管理工具 tnvm
@@ -232,7 +232,7 @@
    # ENABLE_NODE_LOG=YES pm2 start bin/www 使用pm2管理的应用
    ```
 
-   egg 项目
+   2. egg 项目
 
    ```
    # cnpm i nodeinstall -g
