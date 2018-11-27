@@ -197,6 +197,9 @@
    # pm2 start bin/www 守护进程启动
    # pm2 restart app_name|app_id 重启
    # pm2 stop app_name|app_id 停止
+   # pm2 list 查看进程状态
+   # pm2 stop all 停止所有应用
+   # pm2 start ./bin/www --watch 监听更改自动重启
 
    2. egg项目
    # npm start 运行
@@ -206,7 +209,7 @@
 
 3. 阿里 node 性能平台监控
 
-   1. koa 项目(express 项目类似)
+   1.koa 项目(express 项目类似)
 
    ```
    # wget -O- https://raw.githubusercontent.com/aliyun-node/tnvm/master/install.sh | bash 安装版本管理工具 tnvm
@@ -220,9 +223,9 @@
 
    ```
    {
-    "appid": "<YOUR APPID>",
-    "secret": "<YOUR SECRET>"
-    }
+       "appid": "<YOUR APPID>",
+       "secret": "<YOUR SECRET>"
+       }
    ```
 
    ```
@@ -232,7 +235,7 @@
    # ENABLE_NODE_LOG=YES pm2 start bin/www 使用pm2管理的应用
    ```
 
-   2. egg 项目
+   2.egg 项目
 
    ```
    # cnpm i nodeinstall -g
@@ -244,14 +247,14 @@
    ```
    // config/plugin.js
    exports.alinode = {
-     enable: true,
-     package: 'egg-alinode',
+       enable: true,
+       package: 'egg-alinode',
    };
 
    // config/config.default.js
    config.alinode = {
-     appid: '<YOUR_APPID>',
-     secret: '<YOUR_SECRET>',
+       appid: '<YOUR_APPID>',
+       secret: '<YOUR_SECRET>',
    };
    ```
 
