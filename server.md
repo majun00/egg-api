@@ -56,7 +56,7 @@
 2. 修改 nginx.conf
 
    - 修改 user 为 root
-   - 修改 server 如下，这里wx 是指向代理另一个 node 微信公众号项目(运行在 7002 端口，但微信公众号配置 http 只允许 80 端口,所以设置代理，我们的 elm 接口运行在 7001 不用代理)
+   - 修改 server 如下，这里 wx 是指向代理另一个 node 微信公众号项目(运行在 7002 端口，但微信公众号配置 http 只允许 80 端口,所以设置代理，我们的 elm 接口运行在 7001 不用代理)
 
    ```
    server {
@@ -250,26 +250,30 @@
    ```
 
 ## 部署前端项目(这里以 vue 为例)
-1. 修改前端项目打包配置：注意我们要修改打包后路径，不然会取不到js等资源
-    1. 基于webpack打包的项目(以app项目为例)
-    ```
-    // config/index.js
-    // build
-    assetsPublicPath: '/app/'
-    ```
 
-    2. uniapp打包的项目
-    ```
-    // manifest.json
-    "h5":{
-		"router":{
-			"base":"/app/"
-		}
-	},
-    ```
+1. 修改前端项目打包配置：注意我们要修改打包后路径，不然会取不到 js 等资源
+
+   1. 基于 webpack 打包的项目(以 app 项目为例)
+
+   ```
+   // config/index.js
+   // build
+   assetsPublicPath: '/app/'
+   ```
+
+   2. uniapp 打包的项目
+
+   ```
+   // manifest.json
+   "h5":{
+   	"router":{
+   		"base":"/app/"
+   	}
+   },
+   ```
 
 2. 打包
-在项目根目录`npm run build`，然后把 dist 文件夹里的内容传到服务器，这里我们把两个项目分部传到/root/www/app 和/root/www/admin，记得提前创建 app 和 admin 文件夹
+   在项目根目录`npm run build`，然后把 dist 文件夹里的内容传到服务器，这里我们把两个项目分部传到/root/www/app 和/root/www/admin，记得提前创建 app 和 admin 文件夹
 
 ## 项目实战
 
